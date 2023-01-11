@@ -6,4 +6,6 @@
 
 ### Day 2: Tues, Jan 10, '23
 - work on wireframes, this is proving to take a lot of thought and time, the scope of this project is larger than it initially seems
-- start watching videos on React-Router, Next.js 
+- Jotting down and planning for my schema/models
+- start watching videos on React-Router, Next.js
+- Debating between using Express/Mongoose/MongoDB and Django/Python/SQL

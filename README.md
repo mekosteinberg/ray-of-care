@@ -17,15 +17,16 @@ Purpose: An app to help family and caregivers communicate and track a patients p
 
 ### Approach Taken
 
-We decided to make a small wiki page of the How I Met Your Mother show, a classic fan favorite. The search for an existing 3rd party API was long and hard but we managed to find one that had all the episodes and cast members, as well as the roles each played. We knew that we wanted a page for episodes and cast for sure and then expanded onto adding a blog like forum with comments since we didn't want the cast list or episode list to be editted or deleted. 
+Normally, using React, the front is easy enough to implement. I had to learn React Router and Next.js this time, so my start wasn't as speedy and quick as usual.
 
 ### Technologies Used
 
 * React
-* PSQL
+* React Router
+* Next.js
+* Express
 * Heroku
 * Netlify
-* Python
 * Material UI
 
 ### Unsolved Problems
@@ -34,6 +35,7 @@ We decided to make a small wiki page of the How I Met Your Mother show, a classi
 
 ### Resource Links
 * https://reactjs.org/
+* [React Router Tutorial](https://www.youtube.com/watch?v=Ul3y1LXxzdU)
 * https://mui.com/ 
 
 ### Notes:
