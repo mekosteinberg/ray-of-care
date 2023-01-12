@@ -11,9 +11,9 @@
 - Debating between using Express/Mongoose/MongoDB and Django/Python/SQL
 
 ### Day 3: Wed, Jan 11, '23
-- Ironing out schema, meeting with mentor regarding thoughtful database/schema design
+- Ironing out schema, meeting with mentor regarding thoughtful database/schema design.
 - install Next.js & Prisma
 - edit package.json, change scripts and dependencies
-- Lots of time building the schema, got a good start on the user and relations
+- Lots of time building the schema, got a good start on the user and relations.
 
 

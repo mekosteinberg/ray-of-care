@@ -17,7 +17,7 @@ Purpose: An app to help family and caregivers communicate and track a patients p
 
 ### Approach Taken
 
-Normally, using React, the front is easy enough to implement. I had to learn React Router and Next.js this time, so my start wasn't as speedy and quick as usual.
+Normally, using React, the front is easy enough to implement. I had to learn Next.js this time, so my start wasn't as speedy and quick as usual. Next.js has its own version of React-Router built in. 
 
 ### Technologies Used
 
@@ -35,8 +35,8 @@ Normally, using React, the front is easy enough to implement. I had to learn Rea
 * https://nextjs.org/docs/getting-started
 * https://www.prisma.io/docs
 * https://reactjs.org/
-(I didnt end up using React Router, as Next.js has it built in)
-* [React Router Tutorial](https://www.youtube.com/watch?v=Ul3y1LXxzdU)
+
+* [React Router Tutorial](https://www.youtube.com/watch?v=Ul3y1LXxzdU) I didnt end up using React Router, as Next.js has it built in
 * https://mui.com/ 
 
 ### Notes:
