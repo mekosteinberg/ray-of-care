@@ -1,0 +1,85 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgres"
+    url      = "localhost"
+}
+
+model User {
+    id               String             @id @default(uuid())
+    email            String             @unique
+    firstName        String
+    lastName         String
+    homePhone        String
+    cellPhone        String
+    auth0id          String             @unique
+    roles            UserRoles[]
+    address          Address? // this really shouldn't be empty, but stranger things could happen
+    caregiverProfile CaregiverProfile?
+    guardianProfile  GuardianProfile?
+    ClientGuardians  ClientGuardians[]
+    ClientCaregivers ClientCaregivers[]
+}
+
+model Address {
+    userId  String @id
+    user    User   @relation(fields: [userId], references: [id])
+    line1   String
+    line2   String
+    city    String
+    state   String
+    zipcode String
+}
+
+model Role {
+    id    String      @id @default(uuid())
+    role  String      @unique
+    users UserRoles[]
+}
+
+model UserRoles {
+    user   User   @relation(fields: [userId], references: [id])
+    userId String
+    role   Role   @relation(fields: [roleId], references: [id])
+    roleId String
+
+    @@id([userId, roleId])
+}
+
+model CaregiverProfile {
+    userId String @id
+    user   User   @relation(fields: [userId], references: [id])
+}
+
+model GuardianProfile {
+    userId String @id
+    user   User   @relation(fields: [userId], references: [id])
+}
+
+model Client {
+    id               String             @id @default(uuid())
+    firstName        String
+    history          String
+    ClientGuardians  ClientGuardians[]
+    ClientCaregivers ClientCaregivers[]
+}
+
+model ClientGuardians {
+    client   Client @relation(fields: [clientId], references: [id])
+    clientId String
+    userId   String
+    user     User   @relation(fields: [userId], references: [id])
+
+    @@id([clientId, userId])
+}
+
+model ClientCaregivers {
+    client   Client @relation(fields: [clientId], references: [id])
+    clientId String
+    userId   String
+    user     User   @relation(fields: [userId], references: [id])
+
+    @@id([clientId, userId])
+}
