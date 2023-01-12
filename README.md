@@ -40,11 +40,3 @@ Normally, using React, the front is easy enough to implement. I had to learn Nex
 * https://mui.com/ 
 
 ### Notes:
-To redeploy from Netlify, in the terminal run
-```
-npm i
-
-npm run build
-
-sudo netlify deploy --prod
-```
