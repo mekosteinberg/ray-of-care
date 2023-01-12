@@ -22,11 +22,9 @@ Normally, using React, the front is easy enough to implement. I had to learn Rea
 ### Technologies Used
 
 * React
-* React Router
 * Next.js
-* Express
+* Prisma
 * Heroku
-* Netlify
 * Material UI
 
 ### Unsolved Problems
@@ -34,6 +32,7 @@ Normally, using React, the front is easy enough to implement. I had to learn Rea
 
 
 ### Resource Links
+* https://nextjs.org/docs/getting-started
 * https://reactjs.org/
 * [React Router Tutorial](https://www.youtube.com/watch?v=Ul3y1LXxzdU)
 * https://mui.com/ 

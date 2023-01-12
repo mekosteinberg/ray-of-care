@@ -9,3 +9,11 @@
 - Jotting down and planning for my schema/models
 - start watching videos on React-Router, Next.js
 - Debating between using Express/Mongoose/MongoDB and Django/Python/SQL
+
+### Day 3: Wed, Jan 11, '23
+- Ironing out schema, meeting with mentor regarding thoughtful database/schema design
+- edit package.json, change scripts and dependencies
+```
+npm install next
+```
+
