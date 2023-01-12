@@ -12,8 +12,8 @@
 
 ### Day 3: Wed, Jan 11, '23
 - Ironing out schema, meeting with mentor regarding thoughtful database/schema design
+- install Next.js & Prisma
 - edit package.json, change scripts and dependencies
-```
-npm install next
-```
+- Lots of time building the schema, got a good start on the user and relations
+
 
