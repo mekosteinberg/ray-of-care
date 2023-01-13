@@ -61,7 +61,9 @@ model GuardianProfile {
 model Client {
     id               String             @id @default(uuid())
     firstName        String
+    lastName         String
     history          String
+    notes            String
     ClientGuardians  ClientGuardians[]
     ClientCaregivers ClientCaregivers[]
 }

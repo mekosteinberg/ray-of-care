@@ -35,8 +35,9 @@ Normally, using React, the front is easy enough to implement. I had to learn Nex
 * https://nextjs.org/docs/getting-started
 * https://www.prisma.io/docs
 * https://reactjs.org/
+* https://mui.com/material-ui/getting-started/overview/
 
 * [React Router Tutorial](https://www.youtube.com/watch?v=Ul3y1LXxzdU) I didnt end up using React Router, as Next.js has it built in
-* https://mui.com/ 
+
 
 ### Notes:

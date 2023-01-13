@@ -16,4 +16,6 @@
 - edit package.json, change scripts and dependencies
 - Lots of time building the schema, got a good start on the user and relations.
 
+### Day 4, Thurs, Jan 12, '23
+- Still learning Next.js and Prisma stuff, really working to understand the router aspect of Next.js. Started working on the routes a little bit and my landing page so I can hook up Auth0 by the end of tomorrow.
 
