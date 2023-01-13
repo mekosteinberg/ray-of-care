@@ -19,9 +19,9 @@ export default function Layout({ children }) {
                 >
                     A Ray of Care
                 </Typography>
-                <Button variant="outlined" size="small">
+                {/* <Button variant="outlined" size="small">
                     Sign up
-                </Button>
+                </Button> */}
             </Toolbar>
 
             <Toolbar
@@ -29,13 +29,13 @@ export default function Layout({ children }) {
                 variant="dense"
                 sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
             >
-                <MuiLink
+                {/* <MuiLink
                     color="inherit"
                     noWrap
                     variant="body2"
                     sx={{ p: 1, flexShrink: 0 }}
                 > button links
-                </MuiLink>
+                </MuiLink> */}
             </Toolbar>
 
             <main>{children}</main>

@@ -108,12 +108,11 @@ export default function Home() {
                       </MuiLink>
                     </Grid>
                     <Grid item>
-                      <MuiLink href="#" variant="body2">
+                      <MuiLink href="/auth/registration" variant="body2">
                         {"Don't have an account? Sign Up"}
                       </MuiLink>
                     </Grid>
                   </Grid>
-
                 </Box>
               </Box>
             </Grid>
