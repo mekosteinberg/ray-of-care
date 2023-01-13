@@ -15,27 +15,13 @@ export default function Layout({ children }) {
                     color="inherit"
                     align="center"
                     noWrap
-                    sx={{ flex: 1 }}
+                    sx={{ m: 4, p: 5, flex: 1 }}
                 >
                     A Ray of Care
                 </Typography>
                 {/* <Button variant="outlined" size="small">
                     Sign up
                 </Button> */}
-            </Toolbar>
-
-            <Toolbar
-                component="nav"
-                variant="dense"
-                sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
-            >
-                {/* <MuiLink
-                    color="inherit"
-                    noWrap
-                    variant="body2"
-                    sx={{ p: 1, flexShrink: 0 }}
-                > button links
-                </MuiLink> */}
             </Toolbar>
 
             <main>{children}</main>

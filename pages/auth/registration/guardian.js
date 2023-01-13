@@ -1,6 +1,15 @@
 import React from 'react'
+import { Avatar, Box, Button, Container, CssBaseline, FormControlLabel, Grid } from '@mui/material';
+import { Paper, TextField, Typography } from '@mui/material';
+import LockIcon from '@mui/icons-material/Lock';
+import { Link as MuiLink } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 export default function Guardian() {
+
+  const theme = createTheme()
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
@@ -23,6 +32,7 @@ export default function Guardian() {
             <Box component="form"
               // onSubmit={handleSubmit} 
               noValidate sx={{ mt: 1 }}>
+              <Typography>After Registration you will be able to add your loved ones profile and start the care process!</Typography>
               <TextField
                 margin="normal"
                 required
