@@ -10,28 +10,13 @@ datasource db {
 model User {
     id               String             @id @default(uuid())
     email            String             @unique
-    firstName        String
-    lastName         String
-    homePhone        String
-    cellPhone        String
     auth0id          String             @unique
     roles            UserRoles[]
-    address          Address? // this really shouldn't be empty, but stranger things could happen
     caregiverProfile CaregiverProfile?
     guardianProfile  GuardianProfile?
+    // clientProfile    Client? //TODO: If Guardian is creating profile for Client, also create client user login.
     ClientGuardians  ClientGuardians[]
     ClientCaregivers ClientCaregivers[]
-}
-
-model Address {
-    id    String      @id @default(uuid())
-    userId  String @id
-    user    User   @relation(fields: [userId], references: [id])
-    line1   String
-    line2   String
-    city    String
-    state   String
-    zipcode String
 }
 
 model Role {
@@ -52,21 +37,27 @@ model UserRoles {
 model CaregiverProfile {
     userId    String @id
     user      User   @relation(fields: [userId], references: [id])
-    id        String @id @default(uuid())
     firstName String
     lastName  String
-    address     //TODO link to address table
+    line1     String
+    line2     String
+    city      String
+    state     String
+    zipcode   String
     homePhone String
     cellPhone String
 }
 
 model GuardianProfile {
-    userId    String @id
-    user      User   @relation(fields: [userId], references: [id])
-    id        String @id @default(uuid())
+    userId String @id
+    user   User   @relation(fields: [userId], references: [id])
     firstName String
     lastName  String
-    address //TODO link to address table
+    line1     String
+    line2     String
+    city      String
+    state     String
+    zipcode   String
     homePhone String
     cellPhone String
 }
@@ -75,12 +66,16 @@ model Client {
     id               String             @id @default(uuid())
     firstName        String
     lastName         String
-    address //TODO link to address table
+    line1            String
+    line2            String
+    city             String
+    state            String
+    zipcode          String
     homePhone        String
     cellPhone        String
     story            String
     notes            String //*add a new table ClientNotes so you can have multiple
-    //! is there a limit to qty of each? who has access?
+    //! who has access to add or change?
     ClientGuardians  ClientGuardians[]
     ClientCaregivers ClientCaregivers[]
 }

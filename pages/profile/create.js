@@ -2,18 +2,21 @@ import React from 'react'
 import { Avatar, Box, Button, Container, CssBaseline, FormControl, FormControlLabel, FormLabel } from '@mui/material';
 import { Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+import { Link as MuiLink } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-export default function create() {
 
-    const theme = createTheme()
+const theme = createTheme()
+
+export default function CreateUserProfile() {
+
 
     return (
-
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="sm">
                 <CssBaseline />
                 <Box
+
                     sx={{
                         marginTop: 8,
                         display: 'flex',
@@ -25,7 +28,7 @@ export default function create() {
                         <LockIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Client Profile
+                        Welcome! Tell us more!
                     </Typography>
                     <Paper sx={{ p: 4 }}>
                         <Box component="form"
@@ -34,6 +37,17 @@ export default function create() {
                                 console.log('submit')
                             }}
                             noValidate sx={{ mt: 1 }}>
+                            <FormControl>
+                                <FormLabel id="demo-radio-buttons-group-label">Roll</FormLabel>
+                                <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    name="radio-buttons-group"
+                                >
+                                    <FormControlLabel value="guardian" control={<Radio />} label="Guardian/Family" />
+                                    <FormControlLabel value="caregiver" control={<Radio />} label="Caregiver" />
+                                    <FormControlLabel value="client" control={<Radio />} label="Client" />
+                                </RadioGroup>
+                            </FormControl>
                             <TextField
                                 margin="normal"
                                 required
@@ -50,27 +64,15 @@ export default function create() {
                                 label="Last Name"
                                 name="lastName"
                             />
-                            <FormControl>
-                                <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-                                <RadioGroup
-                                    row
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    name="radio-buttons-group"
-                                >
-                                    <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                    <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                    <FormControlLabel value="other" control={<Radio />} label="Other" />
-                                </RadioGroup>
-                            </FormControl>
-
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
                                 id="address1"
-                                label="Home Address"
+                                label="Address 1"
                                 name="address"
                                 autoComplete="address"
+                                autoFocus
                             />
                             <TextField
                                 margin="normal"
@@ -80,7 +82,7 @@ export default function create() {
                                 label="Address 2(Apt, Ste, Box# etc.)"
                                 name="address2"
                                 autoComplete="address2"
-
+                                autoFocus
                             />
                             <TextField
                                 margin="normal"
@@ -90,6 +92,7 @@ export default function create() {
                                 label="City"
                                 name="city"
                                 autoComplete="city"
+                                autoFocus
                             />
                             <TextField
                                 margin="normal"
@@ -98,6 +101,7 @@ export default function create() {
                                 label="State"
                                 name="state"
                                 autoComplete="state"
+                                autoFocus
                             />
                             <TextField sx={{ ml: 4 }}
                                 margin="normal"
@@ -106,6 +110,7 @@ export default function create() {
                                 label="Zipcode"
                                 name="zipcode"
                                 autoComplete="zipcode"
+                                autoFocus
                             />
                             <TextField
                                 margin="normal"
@@ -121,22 +126,6 @@ export default function create() {
                                 label="Cell Phone"
                                 name="cellPhone"
                             />
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="dob"
-                                label="Date of Birth dd/mm/yyyy"
-                                name="dob"
-                            />
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="healthConcerns"
-                                label="Health Concerns (ex:ASD, seizure disorders, etc.)"
-                                name="healthConcerns"
-                            />
                             <Button
                                 type="submit"
                                 fullWidth
@@ -150,6 +139,5 @@ export default function create() {
                 </Box>
             </Container>
         </ThemeProvider>
-
     )
 }
