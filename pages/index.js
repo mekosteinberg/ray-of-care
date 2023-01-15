@@ -1,15 +1,14 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 //MUI imports
-import { Avatar, Box, Button, Checkbox, CssBaseline, FormControlLabel, Grid } from '@mui/material';
-import { Paper, TextField, Typography } from '@mui/material';
-import LockIcon from '@mui/icons-material/Lock';
-import { Link as MuiLink } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Card, CardActionArea, CardMedia, CardContent, List } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
+
+import { createTheme } from '@mui/material/styles';
+
 
 //Image Import
-import Image from '../public/careImg.jpg';
+
+import { Container } from '@mui/system';
 
 const theme = createTheme();
 
@@ -31,9 +30,53 @@ export default function Home() {
         <title>Welcome</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main className={styles.main}>
-        <ThemeProvider theme={theme}>
-          <Grid container component="main" sx={{ height: '100vh' }}>
+      <Container sx={{ my: 2 }}>
+
+        <Card>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              image="/careImg.jpg"
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                A Ray of Care
+              </Typography>
+              <Typography variant="body2" >
+                Are you tired of the constant communication and coordination struggles with your loved one's care team? Introduce our new app, the ultimate solution for seamless communication and organization. Our app allows you to easily share important medical information, keep track of important dates and communicate with your loved one's care team all in one place. Say goodbye to disorganized medical records and miscommunication. Try it now and see how it can simplify the caregiving process for you.              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+        <Paper elevation={4} sx={{ my: 2 }}>
+          put image of calendar here
+          <Typography>
+            Manage calendars
+          </Typography>
+
+
+        </Paper>
+        <Paper elevation={4} sx={{ my: 2 }}>
+          <Typography>
+            simplified communication, talk about shared communication between guardian, caregiver, family in one place
+          </Typography>
+          <List>
+            communication
+          </List>
+        </Paper>
+        <Paper elevation={4} sx={{ my: 2 }}>
+          <Typography>
+            Keep important information about your loved one or client in an organized manner
+          </Typography>
+          images of profile sections like hobbies, likes/dislikes, favorite foods, etc
+        </Paper>
+      </Container>
+    </>
+  );
+}
+
+//*Setup didnt work, starting over 
+{/* <Grid container component="main" sx={{ height: '100vh' }}>
             <CssBaseline />
             <Grid
               item
@@ -60,53 +103,16 @@ export default function Home() {
                 }}
               >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                  <LockIcon />
+                  <AccessibilityNewIcon />
                 </Avatar>
 
                 <Typography component="h1" variant="h5">
-                  Sign in
+                  About Us
                 </Typography>
                 <Box component="form" noValidate
                   // onSubmit={handleSubmit} 
                   sx={{ mt: 1 }}>
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                  />
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                  />
-                  <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                  />
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Sign In
-                  </Button>
                   <Grid container>
-                    <Grid item xs>
-                      <MuiLink href="#" variant="body2">
-                        Forgot password?
-                      </MuiLink>
-                    </Grid>
                     <Grid item>
                       <MuiLink href="/auth/registration" variant="body2">
                         {"Don't have an account? Sign Up"}
@@ -116,10 +122,4 @@ export default function Home() {
                 </Box>
               </Box>
             </Grid>
-          </Grid>
-        </ThemeProvider>
-
-      </main>
-    </>
-  );
-}
+          </Grid> */}

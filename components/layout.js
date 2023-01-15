@@ -1,29 +1,40 @@
 import React from 'react';
-import { Box, Container } from '@mui/system';
-import { Button, Toolbar, Typography } from '@mui/material';
+import { Container } from '@mui/system';
 import { Link as MuiLink } from '@mui/material';
+import Link from 'next/link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import LoginButton from './LoginButton';
+
 
 export default function Layout({ children }) {
     return (
         <>
-            <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Typography
-                    component="h2"
-                    variant="h4"
-                    color="inherit"
-                    align="center"
-                    noWrap
-                    sx={{ m: 4, p: 5, flex: 1 }}
-                >
-                    A Ray of Care
-                </Typography>
-                {/* <Button variant="outlined" size="small">
-                    Sign up
-                </Button> */}
-            </Toolbar>
-
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            A Ray of Care
+                        </Typography>
+                        <LoginButton />
+                    </Toolbar>
+                </AppBar>
+            </Box>
             <main>{children}</main>
 
             <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>

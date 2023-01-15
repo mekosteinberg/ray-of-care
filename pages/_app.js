@@ -1,11 +1,18 @@
-import '../styles/globals.css'
 import React from 'react';
-import Layout from '../components/layout'
+import { UserProvider } from '@auth0/nextjs-auth0/client';
+import Layout from '../components/Layout'
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function App({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+
+    <UserProvider>
+      <CssBaseline>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CssBaseline>
+    </UserProvider>
+
   )
 }
