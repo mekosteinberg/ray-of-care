@@ -5,6 +5,7 @@ Purpose: An app to help family and caregivers communicate and track a patients p
 - Admin - access to all
 - Caregiver - access to multiple patients files, include basic profile
 - Family/Guardians - access only to their family member, include basic profile
+- Clients should have a profile as well
 
 **Patient**
 - Profile: basic data, diagnosis, summary of personality(how to work best with this patient)
@@ -24,7 +25,9 @@ Normally, using React, the front is easy enough to implement. I had to learn Nex
 * React
 * Next.js
 * Prisma
+* Postgres
 * Heroku
+* Auth0
 * Material UI
 
 ### Unsolved Problems
@@ -36,6 +39,7 @@ Normally, using React, the front is easy enough to implement. I had to learn Nex
 * https://www.prisma.io/docs
 * https://reactjs.org/
 * https://mui.com/material-ui/getting-started/overview/
+* https://github.com/auth0/nextjs-auth0
 
 * [React Router Tutorial](https://www.youtube.com/watch?v=Ul3y1LXxzdU) I didnt end up using React Router, as Next.js has it built in
 

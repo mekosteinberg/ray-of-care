@@ -1,40 +1,85 @@
 import React from 'react';
-import { Container } from '@mui/system';
+
+//*Imported 'as'
 import { Link as MuiLink } from '@mui/material';
-import Link from 'next/link';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
+//* MUI general imports
 import GitHubIcon from '@mui/icons-material/GitHub';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import { AppBar, Box, CssBaseline, Container, Divider, Drawer } from '@mui/material';
+import { List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material';
+
+//*MUI Icons
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import LoginButton from './LoginButton';
+import MailIcon from '@mui/icons-material/Mail';
+import MenuIcon from '@mui/icons-material/Menu';
+
+//**App Bar with Side Nav from MUI docs */
+const drawerWidth = 240;
 
 
 export default function Layout({ children }) {
+    //* For the MUI App/Nav Bar 
+
     return (
         <>
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
+            <Box sx={{ display: 'flex' }}>
+                <CssBaseline />
+                <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                     <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <Typography variant="h6" noWrap component="div">
                             A Ray of Care
                         </Typography>
-                        <LoginButton />
                     </Toolbar>
                 </AppBar>
+                <Drawer
+                    variant="permanent"
+                    sx={{
+                        width: drawerWidth,
+                        flexShrink: 0,
+                        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+                    }}
+                >
+                    <Toolbar />
+                    <Box sx={{ overflow: 'auto' }}>
+                        <List>
+                            {['Profile', 'Calendar', 'Contacts'].map((text, index) => (
+                                <ListItem key={text} disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                        </ListItemIcon>
+                                        <ListItemText primary={text} />
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
+                        </List>
+                        <Divider />
+                        <List>
+                            {['Task Tracking', 'Message Board'].map((text, index) => (
+                                <ListItem key={text} disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                        </ListItemIcon>
+                                        <ListItemText primary={text} />
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Box>
+                </Drawer>
+                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                    <Toolbar />
+                </Box>
             </Box>
+
             <main>{children}</main>
 
             <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>

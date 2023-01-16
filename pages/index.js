@@ -37,7 +37,7 @@ export default function Home() {
             <CardMedia
               component="img"
               image="/careImg.jpg"
-              alt="green iguana"
+              alt="caregiver and client with groceries"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">

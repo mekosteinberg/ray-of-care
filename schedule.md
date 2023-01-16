@@ -19,3 +19,12 @@
 ### Day 4, Thurs, Jan 12, '23
 - Still learning Next.js and Prisma stuff, really working to understand the router aspect of Next.js. Started working on the routes a little bit and my landing page so I can hook up Auth0 by the end of tomorrow.
 
+### Day 5, Fri, Jan 13, '23
+- Got quite a few landing pages set visually, though connection isnt complete.
+- More learnings today, I wanted to get Auth0 set up but didnt get there. I think I have a good plan though for that
+
+### Day 6, Sat, Jan 14, '23
+- Somethings things go sideways. I had to nuke a lot of what I did yesterday because once I got the Auth set up, quite a few pages became superfluous. 
+- Twice as many pages as I deleted were created, many are working or at least started now.
+
+
