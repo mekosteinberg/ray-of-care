@@ -4,11 +4,14 @@ import { Card, CardActionArea, CardMedia, CardContent, List } from '@mui/materia
 import { Paper, Typography } from '@mui/material';
 
 import { createTheme } from '@mui/material/styles';
+import { useRouter } from 'next/router'
 
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 //Image Import
 
 import { Container } from '@mui/system';
+import { useEffect } from 'react';
 
 const theme = createTheme();
 
@@ -24,6 +27,15 @@ const theme = createTheme();
 // }
 
 export default function Home() {
+
+  const { user } = useUser();
+  const router = useRouter()
+  useEffect(() => {
+    if (user) {
+      router.push('/dashboard')
+    }
+  }, [user])
+
   return (
     <>
       <Head>
