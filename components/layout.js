@@ -11,6 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 
 export default function Layout({ children }) {
+    
     return (
         <>
             {/* <Box sx={{ flexGrow: 1 }}>
