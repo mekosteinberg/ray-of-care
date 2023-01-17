@@ -30,6 +30,19 @@ Normally, using React, the front is easy enough to implement. I had to learn Nex
 * Auth0
 * Material UI
 
+
+### creating a user for local database
+
+```
+psql
+create user postgres with CREATEDB;
+alter user postgres with LOGIN;
+\password postgres
+postgres
+postgres
+\du
+\q
+```
 ### Unsolved Problems
 
 

@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-    provider = "postgres"
-    url      = "localhost"
+    provider = "postgresql"
+    url      = "postgresql://postgres:postgres@localhost:5432/rayofcare"
 }
 
 model User {
@@ -49,8 +49,8 @@ model CaregiverProfile {
 }
 
 model GuardianProfile {
-    userId String @id
-    user   User   @relation(fields: [userId], references: [id])
+    userId    String @id
+    user      User   @relation(fields: [userId], references: [id])
     firstName String
     lastName  String
     line1     String
@@ -98,10 +98,10 @@ model ClientCaregivers {
     @@id([clientId, userId])
 }
 
-model ClientNotes {
-    id       String @id @default(uuid())
-    client   Client @relation(fields: [clientId], references: [id])
-    clientId String
-    note     String
-    //*archive flag, status, soft delete or deactivate for notes that are no longer relevant and filtering
-}
+// // model ClientNotes {
+// //     id       String @id @default(uuid())
+// //     client   Client @relation(fields: [clientId], references: [id])
+// //     clientId String
+// //     note     String
+//     //*archive flag, status, soft delete or deactivate for notes that are no longer relevant and filtering
+// }
