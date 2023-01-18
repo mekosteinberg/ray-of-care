@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Grid } from '@mui/material';
 
 export default function ProfileView() {
     // only fetch profile on page load
@@ -27,24 +28,27 @@ export default function ProfileView() {
     }, [])
 
     return (
-        <Box>{error && <div>something went wrong...</div>}
+        <Box align="center">{error && <div>something went wrong...</div>}
+
             {profile &&
-                <Card sx={{ minWidth: 400 }}>
-                    <CardContent>
+
+                <Card sx={{ width: 400 }}>
+                    <CardContent align="left">
                         <Typography svariant="h5" color="text.secondary" gutterBottom>
-                            Persons Name
+                            Name:   {profile.firstName} {profile.lastName}
                         </Typography>
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            address
+                            Address: {profile.line1}, {profile.line2}<br />
+                            {profile.city}, {profile.state}  {profile.zipcode}
                         </Typography>
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            phone
+                            Mobile Phone: {profile.cellPhone}
                         </Typography>
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            email
+                            Home Phone: {profile.homePhone}
                         </Typography>
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            password(hidden)
+                            Email: {profile.email}
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -53,6 +57,7 @@ export default function ProfileView() {
                     </CardActions>
                 </Card>
             }
+
         </Box>
     );
 }

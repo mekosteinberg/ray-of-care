@@ -54,9 +54,11 @@ export default withApiAuthRequired(
             res.status(201).json({ success: true })
             //*Get
         } else if (req.method === 'GET') {
+
             //* search by user.sub because this is the ID on auth0
             // https://auth0.com/docs/secure/tokens/id-tokens/id-token-structure
             //* using find first because there's a unique constrain on the auth0id field, so this is just to limit to 1 record
+
             const dbResult = await prisma.user.findFirst({
                 where: {
                     auth0id // this already has a unique constraint so shouldn't need to findUnique
