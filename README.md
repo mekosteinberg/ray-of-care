@@ -24,6 +24,7 @@ Normally, using React, the front is easy enough to implement. I had to learn Nex
 
 * React
 * Next.js
+* Axios
 * Prisma
 * Postgres
 * Heroku
@@ -53,6 +54,7 @@ postgres
 * https://reactjs.org/
 * https://mui.com/material-ui/getting-started/overview/
 * https://github.com/auth0/nextjs-auth0
+* https://www.digitalocean.com/community/tutorials/how-to-use-roles-and-manage-grant-permissions-in-postgresql-on-a-vps-2
 
 * [React Router Tutorial](https://www.youtube.com/watch?v=Ul3y1LXxzdU) I didnt end up using React Router, as Next.js has it built in
 

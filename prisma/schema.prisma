@@ -19,19 +19,26 @@ model User {
     ClientCaregivers ClientCaregivers[]
 }
 
-model Role {
-    id    String      @id @default(uuid())
-    role  String      @unique
-    users UserRoles[]
+// model Role {
+//     id    String      @id @default(uuid())
+//     role  String      @unique
+//     users UserRoles[]
+// }
+enum UserRole {
+    guardian
+    caregiver
+    client
+    user
 }
 
 model UserRoles {
     user   User   @relation(fields: [userId], references: [id])
     userId String
-    role   Role   @relation(fields: [roleId], references: [id])
-    roleId String
+    // role   Role   @relation(fields: [roleId], references: [id])
+    // roleId String
+    role   UserRole   @default(user)
 
-    @@id([userId, roleId])
+    @@id([userId, role])
 }
 
 model CaregiverProfile {

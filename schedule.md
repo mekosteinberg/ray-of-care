@@ -27,4 +27,10 @@
 - Somethings things go sideways. I had to nuke a lot of what I did yesterday because once I got the Auth set up, quite a few pages became superfluous. 
 - Twice as many pages as I deleted were created, many are working or at least started now.
 
+### Day 8, Mon, Jan 16, '23
+- Work done on the various entry and profile views. 
+- Database and permissions running, lots of difficulty getting the initial user permissions and roles right.
 
+### Day 9, Tues, Jan 17, '23
+- Connect the submit/create profile page form to api
+- Work on logout button: try to get user profile, if not a profile, direct to create profile

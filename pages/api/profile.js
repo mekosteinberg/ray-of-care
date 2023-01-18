@@ -12,6 +12,7 @@ export default withApiAuthRequired(
         const { user } = await getSession(req, res);
 
         if (req.method === 'POST') {
+            console.log(req.body)
             res.status(201).json({ success: true })
         } else if (req.method === 'PUT') {
             res.status(201).json({ success: true })

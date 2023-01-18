@@ -1,22 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Avatar, Box, Button, Container, CssBaseline, FormControl, FormControlLabel, FormLabel } from '@mui/material';
 import { Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link as MuiLink } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import axios from 'axios';
+import { Api } from '@mui/icons-material';
+import { useRouter } from 'next/router'
 
 const theme = createTheme()
 
 export default function CreateUserProfile() {
+    let emptyProfile = { firstName: '', lastName: '' }
+    const [profile, setProfile] = useState(emptyProfile)
 
+    const handleChange = (event) => {
+        setProfile({ ...profile, [event.target.name]: event.target.value })
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        axios
+            .post('/api/profile', profile)
+            .then(() => {
+                router.push('/profile')
+            })
+            .catch((err) => {
+                //TODO Show an error message
+                console.log(err)
+            })
+    }
 
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="sm">
                 <CssBaseline />
                 <Box
-
                     sx={{
                         marginTop: 8,
                         display: 'flex',
@@ -32,16 +50,20 @@ export default function CreateUserProfile() {
                     </Typography>
                     <Paper sx={{ p: 4 }}>
                         <Box component="form"
-                            onSubmit={(e) => {
-                                e.preventDefault()
-                                console.log('submit')
-                            }}
+                            onSubmit={handleSubmit}
+                            //     (e) => {
+                            //     e.preventDefault()
+                            //     console.log('submit')
+                            // }
+
                             noValidate sx={{ mt: 1 }}>
                             <FormControl>
                                 <FormLabel id="demo-radio-buttons-group-label">Roll</FormLabel>
                                 <RadioGroup
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    name="radio-buttons-group"
+                                    name="role"
+                                    onChange={handleChange}
+                                    value={profile.role}
                                 >
                                     <FormControlLabel value="guardian" control={<Radio />} label="Guardian/Family" />
                                     <FormControlLabel value="caregiver" control={<Radio />} label="Caregiver" />
@@ -49,6 +71,8 @@ export default function CreateUserProfile() {
                                 </RadioGroup>
                             </FormControl>
                             <TextField
+                                onChange={handleChange}
+                                value={profile.firstName}
                                 margin="normal"
                                 required
                                 fullWidth
@@ -57,6 +81,8 @@ export default function CreateUserProfile() {
                                 name="firstName"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.lastName}
                                 margin="normal"
                                 required
                                 fullWidth
@@ -65,61 +91,66 @@ export default function CreateUserProfile() {
                                 name="lastName"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.line1}
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="address1"
+                                id="line1"
                                 label="Address 1"
-                                name="address"
-                                autoComplete="address"
-                                autoFocus
+                                name="line1"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.line2}
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="address2"
+                                id="line2"
                                 label="Address 2(Apt, Ste, Box# etc.)"
-                                name="address2"
-                                autoComplete="address2"
-                                autoFocus
+                                name="line2"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.city}
                                 margin="normal"
                                 required
                                 fullWidth
                                 id="city"
                                 label="City"
                                 name="city"
-                                autoComplete="city"
-                                autoFocus
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.state}
                                 margin="normal"
                                 required
                                 id="state"
                                 label="State"
                                 name="state"
-                                autoComplete="state"
-                                autoFocus
                             />
-                            <TextField sx={{ ml: 4 }}
+                            <TextField
+                                onChange={handleChange}
+                                value={profile.zipcode}
+                                sx={{ ml: 4 }}
                                 margin="normal"
                                 required
                                 id="zipcode"
                                 label="Zipcode"
                                 name="zipcode"
-                                autoComplete="zipcode"
-                                autoFocus
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.homePhone}
                                 margin="normal"
                                 fullWidth
-                                id="hmphone"
+                                id="homePhone"
                                 label="Home Phone"
-                                name="hmphone"
+                                name="homePhone"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.cellPhone}
                                 margin="normal"
                                 fullWidth
                                 id="cellPhone"
