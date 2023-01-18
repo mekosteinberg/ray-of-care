@@ -11,6 +11,7 @@ export default function ProfileView() {
     // only fetch profile on page load
     const [profile, setProfile] = useState();
     const [error, setError] = useState();
+
     useEffect(() => {
         fetch('/api/profile')
             .then((res) => res.json())
@@ -24,6 +25,7 @@ export default function ProfileView() {
                 setError(error);
             })
     }, [])
+
     return (
         <Box>{error && <div>something went wrong...</div>}
             {profile &&

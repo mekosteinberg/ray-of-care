@@ -12,6 +12,7 @@ const theme = createTheme()
 export default function CreateUserProfile() {
     let emptyProfile = { firstName: '', lastName: '' }
     const [profile, setProfile] = useState(emptyProfile)
+    const router = useRouter();
 
     const handleChange = (event) => {
         setProfile({ ...profile, [event.target.name]: event.target.value })
@@ -56,7 +57,7 @@ export default function CreateUserProfile() {
                             //     console.log('submit')
                             // }
 
-                            noValidate sx={{ mt: 1 }}>
+                            sx={{ mt: 1 }}>
                             <FormControl>
                                 <FormLabel id="demo-radio-buttons-group-label">Roll</FormLabel>
                                 <RadioGroup
@@ -67,7 +68,7 @@ export default function CreateUserProfile() {
                                 >
                                     <FormControlLabel value="guardian" control={<Radio />} label="Guardian/Family" />
                                     <FormControlLabel value="caregiver" control={<Radio />} label="Caregiver" />
-                                    <FormControlLabel value="client" control={<Radio />} label="Client" />
+                                    {/* <FormControlLabel value="client" control={<Radio />} label="Client" /> */}
                                 </RadioGroup>
                             </FormControl>
                             <TextField
@@ -104,7 +105,6 @@ export default function CreateUserProfile() {
                                 onChange={handleChange}
                                 value={profile.line2}
                                 margin="normal"
-                                required
                                 fullWidth
                                 id="line2"
                                 label="Address 2(Apt, Ste, Box# etc.)"
