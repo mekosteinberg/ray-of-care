@@ -4,13 +4,19 @@ import { Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
+
 export default function create() {
 
-    const theme = createTheme()
+
 
     return (
 
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={darkTheme}>
             <Container component="main" maxWidth="sm">
                 <CssBaseline />
                 <Box
@@ -25,7 +31,7 @@ export default function create() {
                         <LockIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Client Profile
+                       Add a Client Profile
                     </Typography>
                     <Paper sx={{ p: 4 }}>
                         <Box component="form"
@@ -74,7 +80,6 @@ export default function create() {
                             />
                             <TextField
                                 margin="normal"
-                                required
                                 fullWidth
                                 id="address2"
                                 label="Address 2(Apt, Ste, Box# etc.)"
@@ -126,7 +131,7 @@ export default function create() {
                                 required
                                 fullWidth
                                 id="dob"
-                                label="Date of Birth dd/mm/yyyy"
+                                label="Date of Birth: dd/mm/yyyy"
                                 name="dob"
                             />
                             <TextField
