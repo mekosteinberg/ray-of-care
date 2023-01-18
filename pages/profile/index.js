@@ -7,6 +7,14 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
+import {Link as MuiLink} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
 
 export default function ProfileView() {
     // only fetch profile on page load
@@ -28,6 +36,8 @@ export default function ProfileView() {
     }, [])
 
     return (
+
+        <ThemeProvider theme={darkTheme}>
         <Box align="center">{error && <div>something went wrong...</div>}
 
             {profile &&
@@ -52,12 +62,16 @@ export default function ProfileView() {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Edit</Button>
+                        <Button size="small"
+                        // onClick="/profile/edit"
+                        ><MuiLink href="/profile/edit">Edit</MuiLink>
+                        </Button>
                         <Button size="small">Delete</Button>
                     </CardActions>
                 </Card>
             }
 
         </Box>
+        </ThemeProvider>
     );
 }

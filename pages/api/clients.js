@@ -1,5 +1,7 @@
 import getClientController from "../../controllers/get-client"
 
+//
+
 export default function handler(req, res) {
     if (req.method === 'GET') {
         return getClientController(req, res)

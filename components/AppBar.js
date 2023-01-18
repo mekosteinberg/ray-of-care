@@ -13,6 +13,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import LoginButton from './LoginButton';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -26,6 +33,7 @@ export default function AppBar() {
     };
 
     const drawer = (
+        
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
                 A Ray of Care
@@ -46,6 +54,7 @@ export default function AppBar() {
 
     return (
         <>
+        <ThemeProvider theme={darkTheme}>
             <MuiAppBar component="nav">
                 <Toolbar>
                     <IconButton
@@ -90,6 +99,7 @@ export default function AppBar() {
                     {drawer}
                 </Drawer>
             </Box>
+            </ThemeProvider>
         </>
     )
 }
