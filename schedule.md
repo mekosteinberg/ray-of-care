@@ -34,3 +34,9 @@
 ### Day 9, Tues, Jan 17, '23
 - Connect the submit/create profile page form to api
 - Work on logout button: try to get user profile, if not a profile, direct to create profile
+
+### Day 10, Wed, Jan 18, '23
+- Editing for the user profile page is working
+- Created and hooked up a create profile page, which is only able to be done if the user is a Guardian. Caregivers are not able to create Client Profiles
+
+### Day 11, Thurs, Jan 19, '23
