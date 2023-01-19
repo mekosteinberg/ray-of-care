@@ -49,9 +49,55 @@ export default withApiAuthRequired(
 
             })
             res.status(201).json({ success: true })
+
             //*Edit
         } else if (req.method === 'PUT') {
-            res.status(201).json({ success: true })
+
+            try {
+                const user = await prisma.user.findFirst({
+                    where: {
+                        auth0id
+                    },
+                    select: {
+                        id: true,
+                        roles: true
+                    }
+                })
+
+                console.log(user)
+                //! user role is an array of objects, filter finds out if user has a specific role (Array.filter) length >0 means they have a role
+                const isGuardian = user.roles.filter((userRole) => userRole.role === UserRole.guardian).length > 0
+                const isCaregiver = user.roles.filter((userRole) => userRole.role === UserRole.caregiver).length > 0
+                //TODO remove these
+                console.log('is gua', isGuardian)
+                console.log('is car', isCaregiver)
+
+                //* Don't need the email, so lets be lazy and pull the form data out without email
+                const { email, ...formData } = req.body
+                if (isGuardian) {
+                    await prisma.guardianProfile.update({
+                        where: {
+                            userId: user.id
+                        },
+                        data: formData
+                    })
+                } else if (isCaregiver) {
+                    await prisma.caregiverProfile.update({
+                        where: {
+                            userId: user.id
+                        },
+                        data: formData
+                    })
+                }
+
+                res.status(201).json({ success: true })
+            } catch (err) {
+                console.error(err)
+                res.status(500).json({ message: err.message })
+            }
+
+
+
             //*Get
         } else if (req.method === 'GET') {
 
