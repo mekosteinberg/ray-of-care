@@ -81,10 +81,18 @@ model Client {
     homePhone        String
     cellPhone        String
     story            String
-    notes            String //*add a new table ClientNotes so you can have multiple
+    gender           ClientGender       @default(other)
+    dob              String
+    //*add a new table ClientNotes so you can have multiple
     //! who has access to add or change?
-    ClientGuardians  ClientGuardians[]
-    ClientCaregivers ClientCaregivers[]
+    clientGuardians  ClientGuardians[]
+    clientCaregivers ClientCaregivers[]
+}
+
+enum ClientGender {
+    male
+    female
+    other
 }
 
 model ClientGuardians {

@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import axios from 'axios';
+
 import { Avatar, Box, Button, Container, CssBaseline, FormControl, FormControlLabel, FormLabel } from '@mui/material';
 import { Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const darkTheme = createTheme({
@@ -10,8 +14,28 @@ const darkTheme = createTheme({
     },
 });
 
-export default function create() {
+export default function CreateClient() {
 
+    let emptyProfile = { firstName: '', lastName: '', line1: '', line2: '', city: '', state: '', zipcode: '', homePhone: '', cellPhone: '', dob: '', story: '' }
+    const [profile, setProfile] = useState(emptyProfile)
+    const router = useRouter();
+
+    const handleChange = (event) => {
+        setProfile({ ...profile, [event.target.name]: event.target.value })
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        axios
+            .post('/api/clients', profile)
+            .then(({ data }) => {
+                router.push('/clients/' + data.id)
+            })
+            .catch((err) => {
+                //TODO Show an error message
+                console.log(err)
+            })
+    }
 
 
     return (
@@ -31,16 +55,15 @@ export default function create() {
                         <LockIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                       Add a Client Profile
+                        Add a Client Profile
                     </Typography>
                     <Paper sx={{ p: 4 }}>
                         <Box component="form"
-                            onSubmit={(e) => {
-                                e.preventDefault()
-                                console.log('submit')
-                            }}
+                            onSubmit={handleSubmit}
                             noValidate sx={{ mt: 1 }}>
                             <TextField
+                                onChange={handleChange}
+                                value={profile.firstName}
                                 margin="normal"
                                 required
                                 fullWidth
@@ -49,6 +72,8 @@ export default function create() {
                                 name="firstName"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.lastName}
                                 margin="normal"
                                 required
                                 fullWidth
@@ -61,7 +86,7 @@ export default function create() {
                                 <RadioGroup
                                     row
                                     aria-labelledby="demo-radio-buttons-group-label"
-                                    name="radio-buttons-group"
+                                    name="gender"
                                 >
                                     <FormControlLabel value="male" control={<Radio />} label="Male" />
                                     <FormControlLabel value="female" control={<Radio />} label="Female" />
@@ -70,56 +95,64 @@ export default function create() {
                             </FormControl>
 
                             <TextField
+                                onChange={handleChange}
+                                value={profile.line1}
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="address1"
+                                id="line1"
                                 label="Home Address"
-                                name="address"
-                                autoComplete="address"
+                                name="line1"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.line2}
                                 margin="normal"
                                 fullWidth
-                                id="address2"
+                                id="line2"
                                 label="Address 2(Apt, Ste, Box# etc.)"
-                                name="address2"
-                                autoComplete="address2"
-
+                                name="line2"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.city}
                                 margin="normal"
                                 required
                                 fullWidth
                                 id="city"
                                 label="City"
                                 name="city"
-                                autoComplete="city"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.state}
                                 margin="normal"
                                 required
                                 id="state"
                                 label="State"
                                 name="state"
-                                autoComplete="state"
                             />
                             <TextField sx={{ ml: 4 }}
+                                onChange={handleChange}
+                                value={profile.zipcode}
                                 margin="normal"
                                 required
                                 id="zipcode"
                                 label="Zipcode"
                                 name="zipcode"
-                                autoComplete="zipcode"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.homePhone}
                                 margin="normal"
                                 fullWidth
-                                id="hmphone"
+                                id="homePhone"
                                 label="Home Phone"
-                                name="hmphone"
+                                name="homePhone"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.cellPhone}
                                 margin="normal"
                                 fullWidth
                                 id="cellPhone"
@@ -127,6 +160,8 @@ export default function create() {
                                 name="cellPhone"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.dob}
                                 margin="normal"
                                 required
                                 fullWidth
@@ -135,13 +170,17 @@ export default function create() {
                                 name="dob"
                             />
                             <TextField
+                                onChange={handleChange}
+                                value={profile.story}
                                 margin="normal"
-                                required
                                 fullWidth
-                                id="healthConcerns"
-                                label="Health Concerns (ex:ASD, seizure disorders, etc.)"
-                                name="healthConcerns"
+                                id="story"
+                                label="Brief Description"
+                                name="story"
+                                multiline
+                                rows={4}
                             />
+
                             <Button
                                 type="submit"
                                 fullWidth

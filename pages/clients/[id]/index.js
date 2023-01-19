@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { Typography } from '@mui/material'
 
 // * Single Client Details View
 
@@ -10,7 +11,12 @@ export default function ClientDetails() {
     useEffect(() => {
         console.log(id)
     }, [id])
+
     return (
+        <>
+        <Typography></Typography>
         <div> ClientDetails</div>
+        </>
+        
     )
 }

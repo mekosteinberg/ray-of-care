@@ -52,7 +52,7 @@ export default withApiAuthRequired(
 
             //*Edit
         } else if (req.method === 'PUT') {
-
+            // finding the user by id that is requesting to edit
             try {
                 const user = await prisma.user.findFirst({
                     where: {
@@ -65,6 +65,7 @@ export default withApiAuthRequired(
                 })
 
                 console.log(user)
+
                 //! user role is an array of objects, filter finds out if user has a specific role (Array.filter) length >0 means they have a role
                 const isGuardian = user.roles.filter((userRole) => userRole.role === UserRole.guardian).length > 0
                 const isCaregiver = user.roles.filter((userRole) => userRole.role === UserRole.caregiver).length > 0
