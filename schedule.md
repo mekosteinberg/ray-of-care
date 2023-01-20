@@ -25,6 +25,7 @@
 
 ### Day 6, Sat, Jan 14, '23
 - Somethings things go sideways. I had to nuke a lot of what I did yesterday because once I got the Auth set up, quite a few pages became superfluous. 
+- Heroku setup
 - Twice as many pages as I deleted were created, many are working or at least started now.
 
 ### Day 8, Mon, Jan 16, '23
