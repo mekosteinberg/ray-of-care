@@ -24,6 +24,7 @@ export default withApiAuthRequired(
             const isCaregiver = user.roles.filter((userRole) => userRole.role === UserRole.caregiver).length > 0
 
             if (isGuardian || isCaregiver) {
+
                 const client = await prisma.client.findFirst({
                     where: {
                         id,
@@ -46,6 +47,16 @@ export default withApiAuthRequired(
 
                     }
                 })
+                if (client) {
+                    //send data if the above is true
+                    res.status(200).json(client)
+                } else {
+                    //if not a client of guardian or caregiver, or doesnt exist, send error
+                    res.status(404).send()
+                }
+            } else {
+                //not authorized as a caregiver or guardian
+                res.send(403).send()
             }
 
             //*Edit

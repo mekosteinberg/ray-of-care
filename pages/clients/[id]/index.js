@@ -16,23 +16,35 @@ export default function ClientDetails() {
     const router = useRouter()
     const { id } = router.query
     const [clientProfile, setClientProfile] = useState();
+
+    //id is not available immediately on the fetch, so these 
+    //show loading indicator until the fetch is complete
     const [error, setError] = useState();
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch('/api/clients/' + id)
-            .then((res) => res.json())
-            .then((data) => {
-                setClientProfile(data)
-            }).catch((error) => {
-                setClientProfile();
-                setError(error)
-            })
+        if (id) {
+            fetch('/api/clients/' + id)
+                .then((res) => res.json())
+                .then((data) => {
+                    setLoading(false)
+                    setClientProfile(data)
+                    setError()
+                }).catch((error) => {
+                    setLoading(false)
+                    setClientProfile();
+                    setError(error)
+                })
+        }
+
     }, [id])
 
     return (
         <>
             <ThemeProvider theme={darkTheme}>
-                <Box align="center">{error && <div>Something went wrong...</div>}
+                <Box align="center">
+                    {error && <div>Something went wrong...</div>}
+                    {loading && <span>loading...</span>}
                     {clientProfile &&
                         <Card sx={{ width: 400 }}>
                             <CardContent align="left">
@@ -73,8 +85,6 @@ export default function ClientDetails() {
                     }
                 </Box>
             </ThemeProvider>
-
-
         </>
 
     )
