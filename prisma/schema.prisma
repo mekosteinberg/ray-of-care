@@ -3,67 +3,96 @@ generator client {
 }
 
 datasource db {
-    provider = "postgres"
-    url      = "localhost"
+    provider = "postgresql"
+    url      = "postgresql://postgres:postgres@localhost:5432/rayofcare"
 }
 
 model User {
     id               String             @id @default(uuid())
     email            String             @unique
-    firstName        String
-    lastName         String
-    homePhone        String
-    cellPhone        String
     auth0id          String             @unique
     roles            UserRoles[]
-    address          Address? // this really shouldn't be empty, but stranger things could happen
     caregiverProfile CaregiverProfile?
     guardianProfile  GuardianProfile?
+    // clientProfile    Client? //TODO: If Guardian is creating profile for Client, also create client user login.
     ClientGuardians  ClientGuardians[]
     ClientCaregivers ClientCaregivers[]
 }
 
-model Address {
-    userId  String @id
-    user    User   @relation(fields: [userId], references: [id])
-    line1   String
-    line2   String
-    city    String
-    state   String
-    zipcode String
-}
-
-model Role {
-    id    String      @id @default(uuid())
-    role  String      @unique
-    users UserRoles[]
+// model Role {
+//     id    String      @id @default(uuid())
+//     role  String      @unique
+//     users UserRoles[]
+// }
+enum UserRole {
+    guardian
+    caregiver
+    client
+    user
 }
 
 model UserRoles {
-    user   User   @relation(fields: [userId], references: [id])
+    user   User     @relation(fields: [userId], references: [id])
     userId String
-    role   Role   @relation(fields: [roleId], references: [id])
-    roleId String
+    // role   Role   @relation(fields: [roleId], references: [id])
+    // roleId String
+    role   UserRole @default(user)
 
-    @@id([userId, roleId])
+    @@id([userId, role])
 }
 
 model CaregiverProfile {
-    userId String @id
-    user   User   @relation(fields: [userId], references: [id])
+    userId    String  @id
+    user      User    @relation(fields: [userId], references: [id])
+    firstName String
+    lastName  String
+    line1     String
+    line2     String?
+    city      String
+    state     String
+    zipcode   String
+    homePhone String?
+    cellPhone String
 }
 
 model GuardianProfile {
-    userId String @id
-    user   User   @relation(fields: [userId], references: [id])
+    userId    String  @id
+    user      User    @relation(fields: [userId], references: [id])
+    firstName String
+    lastName  String
+    line1     String
+    line2     String?
+    city      String
+    state     String
+    zipcode   String
+    homePhone String?
+    cellPhone String
 }
 
 model Client {
     id               String             @id @default(uuid())
     firstName        String
-    history          String
-    ClientGuardians  ClientGuardians[]
-    ClientCaregivers ClientCaregivers[]
+    lastName         String
+    line1            String
+    line2            String
+    city             String
+    state            String
+    zipcode          String
+    homePhone        String
+    cellPhone        String
+    story            String
+    gender           ClientGender       @default(other)
+    dob              String
+    //*add a new table ClientNotes so you can have multiple
+    //! who has access to add or change?
+    clientGuardians  ClientGuardians[]
+    clientCaregivers ClientCaregivers[]
+}
+
+enum ClientGender {
+    male
+    female
+    other
 }
 
 model ClientGuardians {
@@ -83,3 +112,11 @@ model ClientCaregivers {
 
     @@id([clientId, userId])
 }
+
+// // model ClientNotes {
+// //     id       String @id @default(uuid())
+// //     client   Client @relation(fields: [clientId], references: [id])
+// //     clientId String
+// //     note     String
+//     //*archive flag, status, soft delete or deactivate for notes that are no longer relevant and filtering
+// }
