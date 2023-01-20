@@ -5,7 +5,6 @@ import { Paper, Typography } from '@mui/material';
 
 import { createTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router'
-
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 //Image Import
@@ -34,7 +33,7 @@ export default function Home() {
     if (user) {
       router.push('/dashboard')
     }
-  }, [user])
+  }, [user, router])
 
   return (
     <>
@@ -56,7 +55,7 @@ export default function Home() {
                 A Ray of Care
               </Typography>
               <Typography variant="body2" >
-                Are you tired of the constant communication and coordination struggles with your loved one's care team? Introduce our new app, the ultimate solution for seamless communication and organization. Our app allows you to easily share important medical information, keep track of important dates and communicate with your loved one's care team all in one place. Say goodbye to disorganized medical records and miscommunication. Try it now and see how it can simplify the caregiving process for you.              </Typography>
+                Are you tired of the constant communication and coordination struggles with your loved one&apos;s care team? Introduce our new app, the ultimate solution for seamless communication and organization. Our app allows you to easily share important medical information, keep track of important dates and communicate with your loved one&apos;s care team all in one place. Say goodbye to disorganized medical records and miscommunication. Try it now and see how it can simplify the caregiving process for you.              </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
