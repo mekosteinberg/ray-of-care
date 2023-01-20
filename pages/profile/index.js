@@ -1,13 +1,6 @@
-
 import React, { useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
-import {Link as MuiLink} from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material/Box';
+import { Link as MuiLink } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const darkTheme = createTheme({
@@ -38,40 +31,40 @@ export default function ProfileView() {
     return (
 
         <ThemeProvider theme={darkTheme}>
-        <Box align="center">{error && <div>something went wrong...</div>}
+            <Box align="center">{error && <div>something went wrong...</div>}
 
-            {profile &&
+                {profile &&
 
-                <Card sx={{ width: 400 }}>
-                    <CardContent align="left">
-                        <Typography svariant="h5" color="text.secondary" gutterBottom>
-                            Name:   {profile.firstName} {profile.lastName}
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            Address: {profile.line1}, {profile.line2}<br />
-                            {profile.city}, {profile.state}  {profile.zipcode}
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            Mobile Phone: {profile.cellPhone}
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            Home Phone: {profile.homePhone}
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                            Email: {profile.email}
-                        </Typography>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small"
-                        // onClick="/profile/edit"
-                        ><MuiLink href="/profile/edit">Edit</MuiLink>
-                        </Button>
-                        <Button size="small">Delete</Button>
-                    </CardActions>
-                </Card>
-            }
+                    <Card sx={{ width: 400 }}>
+                        <CardContent align="left">
+                            <Typography svariant="h5" color="text.secondary" gutterBottom>
+                                Name:   {profile.firstName} {profile.lastName}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                Address: {profile.line1}, {profile.line2}<br />
+                                {profile.city}, {profile.state}  {profile.zipcode}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                Mobile Phone: {profile.cellPhone}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                Home Phone: {profile.homePhone}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                Email: {profile.email}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small"
+                            // onClick="/profile/edit"
+                            ><MuiLink href="/profile/edit">Edit</MuiLink>
+                            </Button>
+                            <Button size="small">Delete</Button>
+                        </CardActions>
+                    </Card>
+                }
 
-        </Box>
+            </Box>
         </ThemeProvider>
     );
 }

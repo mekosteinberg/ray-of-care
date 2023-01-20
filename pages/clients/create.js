@@ -37,7 +37,6 @@ export default function CreateClient() {
             })
     }
 
-
     return (
 
         <ThemeProvider theme={darkTheme}>

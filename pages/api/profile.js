@@ -97,9 +97,7 @@ export default withApiAuthRequired(
                 res.status(500).json({ message: err.message })
             }
 
-
-
-            //*Get
+           //*Get
         } else if (req.method === 'GET') {
 
             //* search by user.sub because this is the ID on auth0
