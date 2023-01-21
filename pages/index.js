@@ -1,14 +1,8 @@
 import Head from 'next/head'
-//MUI imports
-import { Card, CardActionArea, CardMedia, CardContent, List } from '@mui/material';
-import { Paper, Typography } from '@mui/material';
-
+import { Card, CardActionArea, CardMedia, CardContent, List, Paper, Typography, Grid } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router'
 import { useUser } from '@auth0/nextjs-auth0/client';
-
-//Image Import
-
 import { Container } from '@mui/system';
 import { useEffect } from 'react';
 
@@ -43,40 +37,77 @@ export default function Home() {
       </Head>
       <Container sx={{ my: 2 }}>
 
-        <Card>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              image="/careImg.jpg"
-              alt="caregiver and client with groceries"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                A Ray of Care
-              </Typography>
-              <Typography variant="body2" >
-                Are you tired of the constant communication and coordination struggles with your loved one&apos;s care team? Introduce our new app, the ultimate solution for seamless communication and organization. Our app allows you to easily share important medical information, keep track of important dates and communicate with your loved one&apos;s care team all in one place. Say goodbye to disorganized medical records and miscommunication. Try it now and see how it can simplify the caregiving process for you.              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-        <Paper elevation={4} sx={{ my: 2 }}>
-          put image of calendar here
-          <Typography>
-            Manage calendars
-          </Typography>
-
-
+        <Paper elevation={4} sx={{ m: 2, p: 2 }}>
+          <Grid item xs={12} md={6} sx={{ m: 2 }}>
+            <CardActionArea>
+              <Card sx={{ display: 'flex' }}>
+                <CardContent sx={{ flex: 1 }}>
+                  <Typography gutterBottom variant="h5" component="div">
+                    A Ray of Care
+                  </Typography>
+                  <Typography variant="body2" >
+                    Are you tired of the constant communication and coordination struggles with your loved one&apos;s care team? Introducing our new app, the ultimate solution for seamless communication and organization. Our app allows you to easily & safely share important medical information, keep track of important dates and communicate with your loved one&apos;s care team all in one place. Say goodbye to forgotten tasks and miscommunications. Try it now and see how it can help you let go of some responsibilities.</Typography>
+                </CardContent>
+                <CardMedia
+                  component="img"
+                  sx={{ width: 300, display: { xs: 'none', sm: 'block' } }}
+                  image="/careImg.jpg"
+                  alt="caregiver and client with groceries"
+                />
+              </Card>
+            </CardActionArea>
+          </Grid>
         </Paper>
-        <Paper elevation={4} sx={{ my: 2 }}>
-          <Typography>
-            simplified communication, talk about shared communication between guardian, caregiver, family in one place
-          </Typography>
-          <List>
-            communication
-          </List>
+
+        {/* Messaging Tab */}
+        <Paper elevation={4} sx={{ m: 2, p: 2 }}>
+          <Grid item xs={12} md={6} sx={{ m: 2 }}>
+            <CardActionArea>
+              <Card sx={{ display: 'flex' }}>
+                <CardMedia
+                  component="img"
+                  sx={{ width: 300, display: { xs: 'none', sm: 'block' } }}
+                  image="/careImg3.png"
+                  alt="caregiver messaging"
+                />
+                <CardContent sx={{ flex: 1 }}>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Messaging
+                  </Typography>
+                  <Typography variant="body2" >
+                    Simplified communication between all caregivers and family members to improve the life of your loved one.</Typography>
+                </CardContent>
+              </Card>
+            </CardActionArea>
+          </Grid>
         </Paper>
+
+        {/* Task Tab */}
+        <Paper elevation={4} sx={{ m: 2, p: 2 }}>
+          <Grid item xs={12} md={6} sx={{ m: 2 }}>
+            <CardActionArea>
+              <Card sx={{ display: 'flex' }}>
+                <CardContent sx={{ flex: 1 }}>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Task management
+                  </Typography>
+                  <Typography variant="body2" >
+                    Are things getting done? Make task management easier by seeing what the last caregiver did so the next shift can plan accordingly</Typography>
+                </CardContent>
+                <CardMedia
+                  component="img"
+                  sx={{ width: 300, display: { xs: 'none', sm: 'block' } }}
+                  image="/careImg2.png"
+                  alt="caregiver and client holding hands"
+                />
+              </Card>
+            </CardActionArea>
+          </Grid>
+        </Paper>
+
         <Paper elevation={4} sx={{ my: 2 }}>
           <Typography>
+            Future Release Goals:
             Keep important information about your loved one or client in an organized manner
           </Typography>
           images of profile sections like hobbies, likes/dislikes, favorite foods, etc

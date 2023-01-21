@@ -12,6 +12,5 @@ export default function ClientList() {
                 <Link href={`/clients/${id}`} key={id}>Shea Requa</Link>
             ))}
         </>
-
     )
 }
