@@ -17,8 +17,9 @@ const darkTheme = createTheme({
 const theme = createTheme()
 
 export default function EditUserProfile({ initialProfile }) {
+    const emptyProfile = { firstName: '', lastName: '', line1: '', line2: '', city: '', state: '', zipcode: '', homePhone: '', cellPhone: '' }
 
-    const [profile, setProfile] = useState({})
+    const [profile, setProfile] = useState(emptyProfile)
     const router = useRouter();
 
     const handleChange = (event) => {
@@ -71,7 +72,7 @@ export default function EditUserProfile({ initialProfile }) {
                         Edit your Profile
                     </Typography>
                     <Paper sx={{ p: 4 }}>
-                       <FormGroup>
+                        <FormGroup>
                             {/* ^^This made it not overlap the value and label */}
                             <Box component="form"
                                 onSubmit={handleSubmit}

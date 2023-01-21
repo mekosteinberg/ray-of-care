@@ -51,7 +51,42 @@ export default withApiAuthRequired(
 
             //*Edit
         } else if (req.method === 'PUT') {
+            const { user, authorized } = await isAuthorized(req, res, [UserRole.guardian, UserRole.caregiver])
+            if (authorized) {
+                const formData = req.body
 
+                const client = await prisma.client.findFirst({
+                    where: {
+                        id,
+                        //Check if the user is a caregiver or guardian for the above client
+                        OR: [
+                            {
+                                clientGuardians: {
+                                    some: {
+                                        userId: user.id
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                })
+                if (client) {
+                    await prisma.client.update({
+                        where: {
+                            id
+                        },
+                        data: formData
+                    })
+                    //send data if the above is true
+                    res.status(200).json(client)
+                } else {
+                    //if not a client of guardian, or doesnt exist, send error
+                    res.status(404).send()
+                }
+            } else {
+                //not authorized as a guardian
+                res.send(403).send()
+            }
 
             //*Delete 
         } else if (req.method === 'DELETE') {
