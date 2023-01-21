@@ -45,3 +45,4 @@
 
 ### Day 12, Thurs, Jan 20, '23
 - Edit client details is working, including the security to ensure the only person who can edit the main details is the guardian user role. The security and permissions aspect has been a lot to work with
+- Fixed Heroku issues and deploys, though many things still need a lot of work to function properly
