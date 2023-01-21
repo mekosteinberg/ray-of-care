@@ -20,6 +20,8 @@ Purpose: An app to help family and caregivers communicate and track a patients p
 
 Normally, using React, the front is easy enough to implement. I had to learn Next.js this time, so my start wasn't as speedy and quick as usual. Next.js has its own version of React-Router built in. 
 
+Security is my main focus after the functionality portion. Client information needs to be secure, and only allowed caregivers will be able to view the client details. That will be set up by the Guardian, and guardians additionally should only be able to add and edit their own clients. 
+
 ### Technologies Used
 
 * React
