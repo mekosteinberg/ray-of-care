@@ -1,29 +1,19 @@
 import prisma from "../../../lib/prisma";
-import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0';
+import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 import { UserRole } from "@prisma/client";
+import { isAuthorized } from "../../../lib/isAuthorized";
+
 
 export default withApiAuthRequired(
     async function handler(req, res) {
-
-        const { user: { email, sub: auth0id } } = await getSession(req, res);
 
         //this is for the client id, it pulls it from the URL
         const { id } = req.query
 
         //*Get for Client Data
         if (req.method === 'GET') {
-            const user = await prisma.user.findFirst({
-                where: { auth0id },
-                select: {
-                    id: true,
-                    roles: true
-                }
-            })
-            //! user role is an array of objects, filter finds out if user has a specific role (Array.filter) length >0 means they have a role
-            const isGuardian = user.roles.filter((userRole) => userRole.role === UserRole.guardian).length > 0
-            const isCaregiver = user.roles.filter((userRole) => userRole.role === UserRole.caregiver).length > 0
-
-            if (isGuardian || isCaregiver) {
+            const { user, authorized } = await isAuthorized(req, res, [UserRole.guardian, UserRole.caregiver])
+            if (authorized) {
 
                 const client = await prisma.client.findFirst({
                     where: {
@@ -61,7 +51,42 @@ export default withApiAuthRequired(
 
             //*Edit
         } else if (req.method === 'PUT') {
+            const { user, authorized } = await isAuthorized(req, res, [UserRole.guardian, UserRole.caregiver])
+            if (authorized) {
+                const formData = req.body
 
+                const client = await prisma.client.findFirst({
+                    where: {
+                        id,
+                        //Check if the user is a caregiver or guardian for the above client
+                        OR: [
+                            {
+                                clientGuardians: {
+                                    some: {
+                                        userId: user.id
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                })
+                if (client) {
+                    await prisma.client.update({
+                        where: {
+                            id
+                        },
+                        data: formData
+                    })
+                    //send data if the above is true
+                    res.status(200).json(client)
+                } else {
+                    //if not a client of guardian, or doesnt exist, send error
+                    res.status(404).send()
+                }
+            } else {
+                //not authorized as a guardian
+                res.send(403).send()
+            }
 
             //*Delete 
         } else if (req.method === 'DELETE') {

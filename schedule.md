@@ -41,3 +41,7 @@
 - Created and hooked up a create profile page, which is only able to be done if the user is a Guardian. Caregivers are not able to create Client Profiles
 
 ### Day 11, Thurs, Jan 19, '23
+- Creation of client page is working, including security to ensure the user has authority to view the client details
+
+### Day 12, Thurs, Jan 20, '23
+- Edit client details is working, including the security to ensure the only person who can edit the main details is the guardian user role. The security and permissions aspect has been a lot to work with

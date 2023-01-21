@@ -3,6 +3,8 @@ import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/ma
 import { Link as MuiLink } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 
 // * Single Client Details View
 
@@ -75,9 +77,7 @@ export default function ClientDetails() {
                                 <Button size="small"
                                 // onClick="/profile/edit"
                                 >
-                                    <MuiLink
-                                    // href="/clients/edit"
-                                    >Edit</MuiLink>
+                                    <MuiLink href={`/clients/${id}/edit`} component={Link}>Edit</MuiLink>
                                 </Button>
                                 <Button size="small">Delete</Button>
                             </CardActions>
