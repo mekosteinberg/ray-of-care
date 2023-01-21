@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material/Box';
+import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material';
 import { Link as MuiLink } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
