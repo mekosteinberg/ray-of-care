@@ -13,8 +13,6 @@ const darkTheme = createTheme({
     },
 });
 
-const theme = createTheme()
-
 export default function CreateUserProfile() {
     let emptyProfile = { firstName: '', lastName: '', line1: '', line2: '', city: '', state: '', zipcode: '', homePhone: '', cellPhone: '' }
     const [profile, setProfile] = useState(emptyProfile)

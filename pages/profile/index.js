@@ -3,6 +3,9 @@ import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/ma
 import { Link as MuiLink } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useRouter } from 'next/router';
+
+
 const darkTheme = createTheme({
     palette: {
         mode: 'dark',
@@ -13,6 +16,7 @@ export default function ProfileView() {
     // only fetch profile on page load
     const [profile, setProfile] = useState();
     const [error, setError] = useState();
+    const router = useRouter()
 
     useEffect(() => {
         fetch('/api/profile')
@@ -56,9 +60,10 @@ export default function ProfileView() {
                         </CardContent>
                         <CardActions>
                             <Button size="small"
-                            // onClick="/profile/edit"
-                            ><MuiLink href="/profile/edit">Edit</MuiLink>
-                            </Button>
+                                onClick={() => {
+                                    router.push('/profile/edit')
+                                }}
+                            >Edit</Button>
                             <Button size="small">Delete</Button>
                         </CardActions>
                     </Card>

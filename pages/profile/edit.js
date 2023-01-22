@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router'
 //MUI imports
-import { Avatar, Box, Button, Container, CssBaseline, FormControl, FormControlLabel, FormGroup, FormLabel, InputLabel, OutlinedInput } from '@mui/material';
-import { Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
+import { Avatar, Box, Button, Container, CssBaseline, FormGroup, Paper, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link as MuiLink } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const darkTheme = createTheme({
@@ -13,8 +11,6 @@ const darkTheme = createTheme({
         mode: 'dark',
     },
 });
-
-const theme = createTheme()
 
 export default function EditUserProfile({ initialProfile }) {
     const emptyProfile = { firstName: '', lastName: '', line1: '', line2: '', city: '', state: '', zipcode: '', homePhone: '', cellPhone: '' }
@@ -43,13 +39,19 @@ export default function EditUserProfile({ initialProfile }) {
         fetch('/api/profile')
             .then((res) => res.json())
             .then((data) => {
-                // TODO handle empty?
+                //in case a line is empty, this makes null an empty string and avoids errors
+                Object.keys(data).forEach(key => {
+                    if (data[key] === null) {
+                        data[key] = ''
+                    }
+                })
                 setProfile(data);
             }).catch((error) => {
                 // clear out current profile so the card doesn't because the server failed to get data
                 // TODO make the error message look nicer
-                setProfile();
-                setError(error);
+                setProfile(emptyProfile);
+                // setError(error);
+                console.log(error)
             })
     }, [])
 
