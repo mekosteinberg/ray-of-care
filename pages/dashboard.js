@@ -1,30 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router';
-
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 import { Box, Container } from '@mui/system'
 import { Button, Card, CardActions, CardContent, Grid, Typography } from '@mui/material'
 import { useUserProfile } from '../components/UserProfileProvider';
-import { useUser } from '@auth0/nextjs-auth0/client';
 import { UserRole } from '@prisma/client';
 
-export default function Dashboard() {
+export default withPageAuthRequired(function Dashboard() {
     const router = useRouter()
-    const { user } = useUser();
 
     const userProfile = useUserProfile()
     const [clients, setClients] = useState([])
 
     //TODO Get CLient Data, mapped out
     useEffect(() => {
-        // are you signed in and do you have a profile?
-        if (user && userProfile) {
-            axios
-                .get('/api/clients')
-                .then((response) => {
-                    setClients(response.data)
-                })
-        }
+        axios
+            .get('/api/clients')
+            .then((response) => {
+                setClients(response.data)
+            })
+
     }, [])
 
     return (
@@ -63,4 +59,4 @@ export default function Dashboard() {
             </Grid>
         </Container>
     )
-}
+})
