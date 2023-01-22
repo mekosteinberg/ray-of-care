@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import LoginButton from './LoginButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useRouter } from 'next/router';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const darkTheme = createTheme({
     palette: {
@@ -22,9 +24,39 @@ const darkTheme = createTheme({
 });
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+
+const loggedOutNav = [{
+    text: 'Home',
+    href: '/'
+}, {
+    text: 'About',
+    href: '/about'
+}, {
+    text: 'Contact',
+    href: '/contact'
+}, {
+    text: 'Login',
+    href: '/api/auth/login'
+}];
+
+const loggedInNav = [{
+    text: 'Client List',
+    href: '/clients'
+}, {
+    text: 'Messaging',
+    href: '/messages'
+}, {
+    text: 'Your Profile',
+    href: '/profile'
+}, {
+    text: 'Logout',
+    href: '/api/auth/logout'
+}
+]
 
 export default function AppBar() {
+    const { user } = useUser();
+    const router = useRouter()
 
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -32,17 +64,29 @@ export default function AppBar() {
         setMobileOpen((prevState) => !prevState);
     };
 
+    const navItems = user ? loggedInNav : loggedOutNav
+
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
                 A Ray of Care
             </Typography>
             <Divider />
+            {user && <>
+                <Typography variant="body1" sx={{ my: 2 }}>
+                    Welcome<br/>{user.name}
+                </Typography>
+                <Divider />
+            </>
+            }
+
             <List>
                 {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
+                    <ListItem key={item.text} disablePadding>
+                        <ListItemButton sx={{ textAlign: 'center' }} onClick={() => {
+                            router.push(item.href)
+                        }}>
+                            <ListItemText primary={item.text} />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -53,51 +97,53 @@ export default function AppBar() {
 
     return (
         <>
-        <ThemeProvider theme={darkTheme}>
-            <MuiAppBar component="nav">
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+            <ThemeProvider theme={darkTheme}>
+                <MuiAppBar component="nav">
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2, display: { sm: 'none' } }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography
+                            variant="h6"
+                            component="div"
+                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                        >
+                            A Ray of Care
+                        </Typography>
+                        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {navItems.map((item) => (
+                                <Button key={item.text} sx={{ color: '#fff' }} onClick={() => {
+                                    router.push(item.href)
+                                }}>
+                                    {item.text}
+                                </Button>
+                            ))}
+                            {user && <Typography component='span' variant='body2'>Welcome {user.name}</Typography>}
+                        </Box>
+                    </Toolbar>
+                </MuiAppBar>
+                <Box component="nav">
+                    <Drawer
+                        variant="temporary"
+                        open={mobileOpen}
+                        onClose={handleDrawerToggle}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                        sx={{
+                            display: { xs: 'block', sm: 'none' },
+                            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        }}
                     >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        A Ray of Care
-                    </Typography>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        {navItems.map((item) => (
-                            <Button key={item} sx={{ color: '#fff' }}>
-                                {item}
-                            </Button>
-                        ))}
-                        <LoginButton />
-                    </Box>
-                </Toolbar>
-            </MuiAppBar>
-            <Box component="nav">
-                <Drawer
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-            </Box>
+                        {drawer}
+                    </Drawer>
+                </Box>
             </ThemeProvider>
         </>
     )
