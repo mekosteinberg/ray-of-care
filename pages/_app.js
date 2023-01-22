@@ -4,12 +4,14 @@ import Layout from '../components/Layout'
 import CssBaseline from '@mui/material/CssBaseline';
 
 export default function App({ Component, pageProps }) {
+  const getLayout = Component.getLayout || ((page) => page)
+
   return (
 
     <UserProvider>
       <CssBaseline>
         <Layout>
-          <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
         </Layout>
       </CssBaseline>
     </UserProvider>

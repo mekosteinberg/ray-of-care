@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material'
-import { Link as MuiLink } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, Grid, List, ListItem, Typography } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-
 
 // * Single Client Details View
 
@@ -45,43 +42,110 @@ export default function ClientDetails() {
         <>
             <ThemeProvider theme={darkTheme}>
                 <Box align="center">
+                    <Typography variant="h4" align="left">{clientProfile.firstName} {clientProfile.lastName}</Typography>
                     {error && <div>Something went wrong...</div>}
                     {loading && <span>loading...</span>}
                     {clientProfile &&
-                        <Card sx={{ width: 400 }}>
-                            <CardContent align="left">
-                                <Typography svariant="h5" color="text.secondary" gutterBottom>
-                                    Name:   {clientProfile.firstName} {clientProfile.lastName}
-                                </Typography>
-                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    Address: {clientProfile.line1}, {clientProfile.line2}<br />
-                                    {clientProfile.city}, {clientProfile.state}  {clientProfile.zipcode}
-                                </Typography>
-                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    Mobile Phone: {clientProfile.cellPhone}
-                                </Typography>
-                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    Home Phone: {clientProfile.homePhone}
-                                </Typography>
-                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    Date-of-Birth: {clientProfile.dob}
-                                </Typography>
-                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    Gender: {clientProfile.gender}
-                                </Typography>
-                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    Basic Details: {clientProfile.story}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small"
-                                // onClick="/profile/edit"
-                                >
-                                    <MuiLink href={`/clients/${id}/edit`} component={Link}>Edit</MuiLink>
-                                </Button>
-                                <Button size="small">Delete</Button>
-                            </CardActions>
-                        </Card>
+                        <Grid container>
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent align="left">
+                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                            Address: {clientProfile.line1}, {clientProfile.line2}<br />
+                                            {clientProfile.city}, {clientProfile.state}  {clientProfile.zipcode}
+                                        </Typography>
+                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                            Mobile Phone: {clientProfile.cellPhone}
+                                        </Typography>
+                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                            Home Phone: {clientProfile.homePhone}
+                                        </Typography>
+                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                            Date-of-Birth: {clientProfile.dob}
+                                        </Typography>
+                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                            Gender: {clientProfile.gender}
+                                        </Typography>
+                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                            Basic Details: {clientProfile.story}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button size="small"
+                                            onClick={() => {
+                                                router.push(`/clients/${id}/edit`)
+                                            }}
+                                        >Edit</Button>
+                                        <Button size="small">Delete</Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent>
+                                        <Typography>Important Details</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent>
+                                        <Typography>Guardian/Family</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent>
+                                        <Typography>Caregivers</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent>
+                                        Daily Tasks
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent>
+                                        <Typography>Hobbies/Activities</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent>
+                                        <Typography>Diet</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent>
+                                        <Typography>Calender</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+
+                            <Grid item xs={12} md={6} lg={4}>
+                                <Card sx={{ m: 2, width: 400 }}>
+                                    <CardContent>
+                                        <Typography>Medical Contacts</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+
+                        </Grid>
                     }
                 </Box>
             </ThemeProvider>
@@ -89,3 +153,4 @@ export default function ClientDetails() {
 
     )
 }
+

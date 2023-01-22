@@ -40,7 +40,9 @@ export default function Dashboard() {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button>Profile</Button>
+                                    <Button onClick={() => {
+                                        router.push('/clients/' + client.id)
+                                    }}>Profile</Button>
                                     <Button>Messages</Button>
                                 </CardActions>
                             </Card>
