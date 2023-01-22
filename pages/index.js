@@ -22,12 +22,12 @@ const theme = createTheme();
 export default function Home() {
 
   const { user } = useUser();
-  // const router = useRouter()
-  // useEffect(() => {
-  //   if (user) {
-  //     router.push('/dashboard')
-  //   }
-  // }, [user, router])
+  const router = useRouter()
+  useEffect(() => {
+    if (user) {
+      router.push('/dashboard')
+    }
+  }, [user, router])
 
   return (
     <>
