@@ -29,7 +29,7 @@ export default function Dashboard() {
             <Grid container spacing={2}>
                 {clients.map((client, index) => {
                     return (
-                        <Grid item xs={12} md={6} lg={4}>
+                        <Grid key={client.id} item xs={12} md={6} lg={4}>
                             <Card>
                                 <CardContent>
                                     <Typography variant="h5" component="div">
