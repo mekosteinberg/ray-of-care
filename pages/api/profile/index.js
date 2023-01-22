@@ -1,4 +1,4 @@
-import prisma from "../../lib/prisma";
+import prisma from "../../../lib/prisma";
 import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0';
 import { UserRole } from "@prisma/client";
 
@@ -10,8 +10,7 @@ import { UserRole } from "@prisma/client";
 
 export default withApiAuthRequired(
     async function handler(req, res) {
-        // TODO delete these logs
-        console.log(req.body)
+
         const { user: { email, sub: auth0id } } = await getSession(req, res);
 
         //*Create
@@ -69,9 +68,6 @@ export default withApiAuthRequired(
                 //! user role is an array of objects, filter finds out if user has a specific role (Array.filter) length >0 means they have a role
                 const isGuardian = user.roles.filter((userRole) => userRole.role === UserRole.guardian).length > 0
                 const isCaregiver = user.roles.filter((userRole) => userRole.role === UserRole.caregiver).length > 0
-                //TODO remove these
-                console.log('is gua', isGuardian)
-                console.log('is car', isCaregiver)
 
                 //* Don't need the email, so lets be lazy and pull the form data out without email
                 const { email, ...formData } = req.body
@@ -97,7 +93,7 @@ export default withApiAuthRequired(
                 res.status(500).json({ message: err.message })
             }
 
-           //*Get
+            //*Get
         } else if (req.method === 'GET') {
 
             //* search by user.sub because this is the ID on auth0
@@ -109,6 +105,7 @@ export default withApiAuthRequired(
                     auth0id // this already has a unique constraint so shouldn't need to findUnique
                 },
                 select: {
+                    id: true,
                     email: true,
                     // join to these two tables and try to return their results
                     // names come from the schema.prisma file
@@ -145,6 +142,7 @@ export default withApiAuthRequired(
             })
             if (dbResult) {
                 const response = {
+                    id: dbResult.id,
                     email: dbResult.email,
                     // doing this to flatten the response
                     // so that the react app doesn't need to know
@@ -154,11 +152,10 @@ export default withApiAuthRequired(
                 }
                 res.status(200).json(response)
             } else {
-                res.status(404).end();
+                res.status(404).send();
             }
-        } else {
-            res.status(501);
-        }
+        } else { res.status(404).send(); }
+
         // TODO do we need a delete here? maybe? probably?
     }
 ) 

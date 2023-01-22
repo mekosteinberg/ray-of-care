@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios';
-
 import { Avatar, Box, Button, Container, CssBaseline, FormControl, FormControlLabel, FormLabel } from '@mui/material';
 import { Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -14,7 +14,7 @@ const darkTheme = createTheme({
     },
 });
 
-export default function CreateClient() {
+export default withPageAuthRequired( function CreateClient() {
 
     let emptyProfile = { firstName: '', lastName: '', line1: '', line2: '', city: '', state: '', zipcode: '', homePhone: '', cellPhone: '', dob: '', story: '' }
     const [profile, setProfile] = useState(emptyProfile)
@@ -195,4 +195,4 @@ export default function CreateClient() {
         </ThemeProvider>
 
     )
-}
+})

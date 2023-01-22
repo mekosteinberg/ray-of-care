@@ -17,6 +17,7 @@ model User {
     // clientProfile    Client? //TODO: If Guardian is creating profile for Client, also create client user login.
     ClientGuardians  ClientGuardians[]
     ClientCaregivers ClientCaregivers[]
+    Messages         Message[]
 }
 
 // model Role {
@@ -87,6 +88,7 @@ model Client {
     //! who has access to add or change?
     clientGuardians  ClientGuardians[]
     clientCaregivers ClientCaregivers[]
+    Messages          Message[]
 }
 
 enum ClientGender {
@@ -111,6 +113,17 @@ model ClientCaregivers {
     user     User   @relation(fields: [userId], references: [id])
 
     @@id([clientId, userId])
+}
+
+model Message {
+    id        String   @id @default(uuid())
+    user      User     @relation(fields: [userId], references: [id])
+    userId    String
+    role      UserRole @default(user)
+    client    Client   @relation(fields: [clientId], references: [id])
+    clientId  String
+    timestamp DateTime
+    message   String
 }
 
 // // model ClientNotes {

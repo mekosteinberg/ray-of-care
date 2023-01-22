@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router'
-
-//MUI imports
 import { Avatar, Box, Button, Container, CssBaseline } from '@mui/material';
 import { Paper, TextField, Typography, FormGroup } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const darkTheme = createTheme({
@@ -14,7 +13,7 @@ const darkTheme = createTheme({
     },
 });
 
-export default function EditClientDetails({ initialProfile }) {
+export default withPageAuthRequired( function EditClientDetails({ initialProfile }) {
     const emptyProfile = {
         firstName: '', lastName: '', line1: '', line2: '', city: '', state: '', zipcode: '', homePhone: '', cellPhone: '', dob: '', story: ''
     }
@@ -202,4 +201,4 @@ export default function EditClientDetails({ initialProfile }) {
             </Container>
         </ThemeProvider>
     )
-}
+})

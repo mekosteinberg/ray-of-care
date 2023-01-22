@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { Avatar, Box, Button, Container, CssBaseline, FormGroup, Paper, TextField, Typography } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 
 const darkTheme = createTheme({
     palette: {
@@ -12,7 +13,7 @@ const darkTheme = createTheme({
     },
 });
 
-export default function EditUserProfile({ initialProfile }) {
+export default withPageAuthRequired( function EditUserProfile({ initialProfile }) {
     const emptyProfile = { firstName: '', lastName: '', line1: '', line2: '', city: '', state: '', zipcode: '', homePhone: '', cellPhone: '' }
 
     const [profile, setProfile] = useState(emptyProfile)
@@ -184,4 +185,4 @@ export default function EditUserProfile({ initialProfile }) {
             </Container>
         </ThemeProvider>
     )
-}
+})
