@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Box, Button, Card, CardActions, CardContent, Grid, List, ListItem, Typography } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
+import { useUserProfile } from '../../../components/UserProfileProvider';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 
 // * Single Client Details View
 
@@ -11,9 +13,11 @@ const darkTheme = createTheme({
     },
 });
 
-export default function ClientDetails() {
+export default withPageAuthRequired( function ClientDetails() {
     const router = useRouter()
     const { id } = router.query
+    // TODO use roles to guard the add/edit client button
+    const { roles } = useUserProfile()
     const [clientProfile, setClientProfile] = useState();
 
     //id is not available immediately on the fetch, so these 
@@ -72,6 +76,9 @@ export default function ClientDetails() {
                                                 Basic Details: {clientProfile.story}
                                             </Typography>
                                         </CardContent>
+                                        {
+
+                                        }
                                         <CardActions>
                                             <Button size="small"
                                                 onClick={() => {
@@ -155,5 +162,4 @@ export default function ClientDetails() {
         </>
 
     )
-}
-
+})

@@ -42,7 +42,7 @@ const loggedOutNav = [{
 const loggedInNav = [{
     text: 'Dashboard',
     href: '/dashboard'
-},{
+}, {
     text: 'Your Profile',
     href: '/profile'
 }, {
@@ -71,7 +71,7 @@ export default function AppBar() {
             <Divider />
             {user && <>
                 <Typography variant="body1" sx={{ my: 2 }}>
-                    Welcome<br/>{user.name}
+                    Welcome<br />{user.name}
                 </Typography>
                 <Divider />
             </>
@@ -121,7 +121,7 @@ export default function AppBar() {
                                     {item.text}
                                 </Button>
                             ))}
-                            {user && <Typography component='span' variant='body2'>Welcome {user.name}</Typography>}
+                            {user && <Typography component='div' sx={{ py: '6px', px: '8px', display: 'inline-flex', textTransform: 'none', verticalAlign: 'middle' }} variant='button'>Welcome {user.name}</Typography>}
                         </Box>
                     </Toolbar>
                 </MuiAppBar>

@@ -1,7 +1,7 @@
-import prisma from "../../lib/prisma";
+import prisma from "../../../lib/prisma";
 import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0';
 import { UserRole } from "@prisma/client";
-import { isAuthorized } from "../../lib/isAuthorized";
+import { isAuthorized } from "../../../lib/isAuthorized";
 
 //
 

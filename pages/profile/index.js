@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material';
-import { Link as MuiLink } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 import { useRouter } from 'next/router';
-
+import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 
 const darkTheme = createTheme({
     palette: {
@@ -12,7 +10,7 @@ const darkTheme = createTheme({
     },
 });
 
-export default function ProfileView() {
+export default withPageAuthRequired(function ProfileView() {
     // only fetch profile on page load
     const [profile, setProfile] = useState();
     const [error, setError] = useState();
@@ -22,11 +20,9 @@ export default function ProfileView() {
         fetch('/api/profile')
             .then((res) => res.json())
             .then((data) => {
-                // TODO handle empty?
                 setProfile(data);
             }).catch((error) => {
                 // clear out current profile so the card doesn't because the server failed to get data
-                // TODO make the error message look nicer
                 setProfile();
                 setError(error);
             })
@@ -72,4 +68,4 @@ export default function ProfileView() {
             </Box>
         </ThemeProvider>
     );
-}
+});
