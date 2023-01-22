@@ -40,12 +40,9 @@ const loggedOutNav = [{
 }];
 
 const loggedInNav = [{
-    text: 'Client List',
-    href: '/clients'
-}, {
-    text: 'Messaging',
-    href: '/messages'
-}, {
+    text: 'Dashboard',
+    href: '/dashboard'
+},{
     text: 'Your Profile',
     href: '/profile'
 }, {

@@ -91,8 +91,6 @@ export default withApiAuthRequired(
             //*Delete 
         } else if (req.method === 'DELETE') {
 
-        } else {
-            res.status(501)
         }
 
         // be generic with things we aren't listening for
