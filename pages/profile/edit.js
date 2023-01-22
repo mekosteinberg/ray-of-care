@@ -53,7 +53,7 @@ export default function EditUserProfile({ initialProfile }) {
                 // setError(error);
                 console.log(error)
             })
-    }, [])
+    })
 
     return (
         <ThemeProvider theme={darkTheme}>
