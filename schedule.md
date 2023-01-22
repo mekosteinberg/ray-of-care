@@ -14,19 +14,23 @@
 - Ironing out schema, meeting with mentor regarding thoughtful database/schema design.
 - install Next.js & Prisma
 - edit package.json, change scripts and dependencies
-- Lots of time building the schema, got a good start on the user and relations.
+- Scaffolding! Lots of time building the schema, got a good start on the user and relations.
 
 ### Day 4, Thurs, Jan 12, '23
-- Still learning Next.js and Prisma stuff, really working to understand the router aspect of Next.js. Started working on the routes a little bit and my landing page so I can hook up Auth0 by the end of tomorrow.
+- Still learning Next.js and Prisma stuff, really working to understand the router aspect of Next.js. 
+- Started working on the routes a little bit and my landing page so I can hook up Auth0 by the end of tomorrow. 
 
 ### Day 5, Fri, Jan 13, '23
-- Got quite a few landing pages set visually, though connection isnt complete.
+- Got quite a few landing pages set visually, though connection isnt complete. Registration views started though
 - More learnings today, I wanted to get Auth0 set up but didnt get there. I think I have a good plan though for that
 
 ### Day 6, Sat, Jan 14, '23
 - Somethings things go sideways. I had to nuke a lot of what I did yesterday because once I got the Auth set up, quite a few pages became superfluous. 
 - Heroku setup
 - Twice as many pages as I deleted were created, many are working or at least started now.
+
+### Day 7, Sun, Jan 15, '23
+- Navigation Bar, AppBar
 
 ### Day 8, Mon, Jan 16, '23
 - Work done on the various entry and profile views. 
@@ -41,8 +45,13 @@
 - Created and hooked up a create profile page, which is only able to be done if the user is a Guardian. Caregivers are not able to create Client Profiles
 
 ### Day 11, Thurs, Jan 19, '23
-- Creation of client page is working, including security to ensure the user has authority to view the client details
-
-### Day 12, Thurs, Jan 20, '23
 - Edit client details is working, including the security to ensure the only person who can edit the main details is the guardian user role. The security and permissions aspect has been a lot to work with
 - Fixed Heroku issues and deploys, though many things still need a lot of work to function properly
+
+### Day 12, Fri, Jan 20, '23
+- Refactored security checks and authorizations to be reusable in an easier fashion. Got the 'edit client' portion working. 
+
+### Day 13, Sat, Jan 21, '23
+- Managed to get a fair amount done on connecting all the pages to each other. Worked out client mapping for guardian and caregiver pages, some allowances still need to be worked out for security purposes. Lots of little fixes. 
+
+### Day 14, Sun, Jan 23, '23
