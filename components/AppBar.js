@@ -16,6 +16,8 @@ import LoginButton from './LoginButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import { useUserProfile } from './UserProfileProvider';
+
 
 const darkTheme = createTheme({
     palette: {
@@ -54,7 +56,7 @@ const loggedInNav = [{
 export default function AppBar() {
     const { user } = useUser();
     const router = useRouter()
-
+    const userProfile = useUserProfile()
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const handleDrawerToggle = () => {
@@ -66,9 +68,9 @@ export default function AppBar() {
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Divider />
-            {user && <>
+            {userProfile && <>
                 <Typography variant="body1" sx={{ my: 2 }}>
-                    Welcome<br />{user.name}
+                    Welcome,<br />{userProfile.firstName}
                 </Typography>
                 <Divider />
             </>
@@ -118,7 +120,7 @@ export default function AppBar() {
                                     {item.text}
                                 </Button>
                             ))}
-                            {user && <Typography component='div' sx={{ py: '6px', px: '8px', display: 'inline-flex', textTransform: 'none', verticalAlign: 'middle' }} variant='button'>Welcome {user.name}</Typography>}
+                            {userProfile && <Typography component='div' sx={{ py: '6px', px: '8px', display: 'inline-flex', textTransform: 'none', verticalAlign: 'middle' }} variant='button'>Welcome, {userProfile.firstName}</Typography>}
                         </Box>
                     </Toolbar>
                 </MuiAppBar>
