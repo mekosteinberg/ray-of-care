@@ -107,6 +107,12 @@ export default withApiAuthRequired(
                 select: {
                     id: true,
                     email: true,
+                    roles: {
+                        select: {
+                            role: true,
+                            userId: false
+                        }
+                    },
                     // join to these two tables and try to return their results
                     // names come from the schema.prisma file
                     // caregiverProfile: true,
@@ -141,9 +147,12 @@ export default withApiAuthRequired(
                 }
             })
             if (dbResult) {
+                const roles = dbResult.roles.map((role) => {
+                    return role.role
+                })
                 const response = {
                     id: dbResult.id,
-                    email: dbResult.email,
+                    email: dbResult.email, roles,
                     // doing this to flatten the response
                     // so that the react app doesn't need to know
                     // about guardianProfile vs caregiverProfile
