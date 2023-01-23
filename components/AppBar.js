@@ -65,9 +65,6 @@ export default function AppBar() {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
-                A Ray of Care
-            </Typography>
             <Divider />
             {user && <>
                 <Typography variant="body1" sx={{ my: 2 }}>
@@ -109,7 +106,7 @@ export default function AppBar() {
                         <Typography
                             variant="h6"
                             component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                            sx={{ flexGrow: 1 }}
                         >
                             A Ray of Care
                         </Typography>
