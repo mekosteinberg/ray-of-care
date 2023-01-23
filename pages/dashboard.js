@@ -15,13 +15,14 @@ export default withPageAuthRequired(function Dashboard() {
 
     //TODO Get CLient Data, mapped out
     useEffect(() => {
-        axios
-            .get('/api/clients')
-            .then((response) => {
-                setClients(response.data)
-            })
-
-    }, [])
+        if (userProfile) {
+            axios
+                .get('/api/clients')
+                .then((response) => {
+                    setClients(response.data)
+                })
+        }
+    }, [userProfile])
 
     return (
         <Container sx={{ my: 2 }}>

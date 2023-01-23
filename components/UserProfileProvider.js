@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/router'
+import { manageErrors } from '../lib/manageErrors';
 
 
 const MyContext = React.createContext(undefined);
@@ -8,17 +9,7 @@ const MyContext = React.createContext(undefined);
 //hook to pull into other components and get roles for other check purposes
 export const useUserProfile = () => React.useContext(MyContext);
 
-//https://towardsdev.com/how-to-handle-404-500-and-more-using-fetch-api-in-javascript-f4e301925a51
-function manageErrors(response) {
-    if (!response.ok) {
-        const responseError = {
-            statusText: response.statusText,
-            status: response.status
-        };
-        throw (responseError);
-    }
-    return response;
-}
+
 export default function UserProfileProvider({ children }) {
 
     const { user } = useUser();

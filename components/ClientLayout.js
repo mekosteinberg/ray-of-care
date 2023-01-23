@@ -103,10 +103,9 @@ export default withPageAuthRequired(function ClientLayout({ children }) {
                                     <MenuItem key={navItem.href(clientProfile.id)} onClick={() => { router.push(navItem.href(clientProfile.id)) }}>{navItem.text}</MenuItem>
                                 )
                             })}
-
                         </Menu>
-
                     </Box>
+
                     <Grid container spacing={2}>
                         <Grid item xs={false} md={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
                             <Paper elevation={1}>
