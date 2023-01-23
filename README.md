@@ -48,6 +48,15 @@ postgres
 \du
 \q
 ```
+
+### copying local database to heroku database
+
+**DANGER** this will nuke the heroku db. `heroku pg:reset <my heroku postgres name> --app ray-of-care`
+
+copy all local database data to heroku. `heroku pg:push rayofcare <my heroku postgres name> --app ray-of-care`
+
+copy all local database data from heroku. `heroku pg:pull <my heroku postgres name> rayofcare --app ray-of-care`
+
 ### Unsolved Problems
 - when fetch gets a 404, the console always logs an error even though I have a catch handler for it
 - pagination for messages, that will get really long and slow otherwise
