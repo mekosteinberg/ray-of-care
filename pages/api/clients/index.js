@@ -29,7 +29,7 @@ export default withApiAuthRequired(
 
                 } else {
                     //if not a guardian, error
-                    res.status(403).end()
+                    res.status(403).send()
                 }
 
 

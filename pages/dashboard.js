@@ -15,13 +15,14 @@ export default withPageAuthRequired(function Dashboard() {
 
     //TODO Get CLient Data, mapped out
     useEffect(() => {
-        axios
-            .get('/api/clients')
-            .then((response) => {
-                setClients(response.data)
-            })
-
-    }, [])
+        if (userProfile) {
+            axios
+                .get('/api/clients')
+                .then((response) => {
+                    setClients(response.data)
+                })
+        }
+    }, [userProfile])
 
     return (
         <Container sx={{ my: 2 }}>
@@ -50,7 +51,9 @@ export default withPageAuthRequired(function Dashboard() {
                                     <Button onClick={() => {
                                         router.push('/clients/' + client.id)
                                     }}>Profile</Button>
-                                    <Button>Messages</Button>
+                                    <Button onClick={() => {
+                                        router.push(`/clients/${client.id}/messages`)
+                                    }}>Messages</Button>
                                 </CardActions>
                             </Card>
                         </Grid>

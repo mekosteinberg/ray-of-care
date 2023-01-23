@@ -4,9 +4,10 @@ import Layout from '../components/Layout'
 import CssBaseline from '@mui/material/CssBaseline';
 import UserProfileProvider from '../components/UserProfileProvider';
 
-//this check
+//
 
 export default function App({ Component, pageProps }) {
+  //getLayout is saying if the Component has a getLayout property then use it, otherwise use a passthrough
   const getLayout = Component.getLayout || ((page) => page)
 
   return (
@@ -23,7 +24,6 @@ export default function App({ Component, pageProps }) {
           </Layout>
         </CssBaseline>
       </UserProfileProvider>
-
     </UserProvider>
 
   )

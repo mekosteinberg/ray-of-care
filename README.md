@@ -49,10 +49,13 @@ postgres
 \q
 ```
 ### Unsolved Problems
-- when fetch gets a 404, the console always logs an error even though i have a catch handler for it
+- when fetch gets a 404, the console always logs an error even though I have a catch handler for it
+- pagination for messages, that will get really long and slow otherwise
+- update messages in realtime 
+- notifications of new messages
+- finish adding guardian list and other activites and information 
 
-
-### Resource Links
+### Resource Links & Notes
 * https://nextjs.org/docs/getting-started
 * https://www.prisma.io/docs
 * https://reactjs.org/
@@ -61,9 +64,8 @@ postgres
 * https://www.digitalocean.com/community/tutorials/
 * [Roles and Grant Permissions](https://www.digitalocean.com/community/tutorials/how-to-use-roles-and-manage-grant-permissions-in-postgresql-on-a-vps-2)
 * [Multiple .env](https://www.prisma.io/docs/guides/development-environment/environment-variables/using-multiple-env-files)
-
+* [client side data protection](https://github.com/auth0/nextjs-auth0/blob/main/EXAMPLES.md#protecting-a-client-side-rendered-csr-page)
 
 * [React Router Tutorial](https://www.youtube.com/watch?v=Ul3y1LXxzdU) I didnt end up using React Router, as Next.js has it built in
 
-
-### Notes:
+- Added 'postinstall' script because the prisma needed to regenerate the client on every deploy.
