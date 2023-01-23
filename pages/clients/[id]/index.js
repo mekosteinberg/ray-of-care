@@ -4,7 +4,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
 import ClientLayout, { useClient } from '../../../components/ClientLayout';
-
+import { useUserProfile } from '../../../components/UserProfileProvider';
+import { UserRole } from '@prisma/client';
 // * Single Client Details View
 
 const darkTheme = createTheme({
@@ -16,6 +17,8 @@ const darkTheme = createTheme({
 const ClientDetails = withPageAuthRequired(function ClientDetails() {
     const router = useRouter()
     const { id } = router.query
+    const userProfile = useUserProfile()
+
     // TODO use roles to guard the add/edit client button
     const clientProfile = useClient();
 
@@ -48,15 +51,16 @@ const ClientDetails = withPageAuthRequired(function ClientDetails() {
                                     Basic Details: {clientProfile.story}
                                 </Typography>
                             </CardContent>
-
-                            <CardActions>
-                                <Button size="small"
-                                    onClick={() => {
-                                        router.push(`/clients/${id}/edit`)
-                                    }}
-                                >Edit</Button>
-                                <Button size="small">Delete</Button>
-                            </CardActions>
+                            {userProfile?.roles.includes(UserRole.guardian) &&
+                                <CardActions>
+                                    <Button size="small"
+                                        onClick={() => {
+                                            router.push(`/clients/${id}/edit`)
+                                        }}
+                                    >Edit</Button>
+                                    <Button size="small">Delete</Button>
+                                </CardActions>
+                            }
                         </Card>
                     </>
                 }
