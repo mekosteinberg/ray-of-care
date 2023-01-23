@@ -13,11 +13,11 @@ const darkTheme = createTheme({
     },
 });
 
-export default withPageAuthRequired( function ClientDetails() {
+export default withPageAuthRequired(function ClientDetails() {
     const router = useRouter()
     const { id } = router.query
     // TODO use roles to guard the add/edit client button
-    const { roles } = useUserProfile()
+    // const { roles } = useUserProfile()
     const [clientProfile, setClientProfile] = useState();
 
     //id is not available immediately on the fetch, so these 
@@ -52,9 +52,9 @@ export default withPageAuthRequired( function ClientDetails() {
                         <>
                             <Typography variant="h4" align="left">{clientProfile.firstName} {clientProfile.lastName}</Typography>
 
-                            <Grid container>
+                            <Grid container spacing={2}>
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent align="left">
                                             <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                                 Address: {clientProfile.line1}, {clientProfile.line2}<br />
@@ -91,7 +91,7 @@ export default withPageAuthRequired( function ClientDetails() {
                                 </Grid>
 
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent>
                                             <Typography>Important Details</Typography>
                                         </CardContent>
@@ -99,7 +99,7 @@ export default withPageAuthRequired( function ClientDetails() {
                                 </Grid>
 
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent>
                                             <Typography>Guardian/Family</Typography>
                                         </CardContent>
@@ -107,7 +107,7 @@ export default withPageAuthRequired( function ClientDetails() {
                                 </Grid>
 
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent>
                                             <Typography>Caregivers</Typography>
                                         </CardContent>
@@ -115,7 +115,7 @@ export default withPageAuthRequired( function ClientDetails() {
                                 </Grid>
 
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent>
                                             Daily Tasks
                                         </CardContent>
@@ -123,7 +123,7 @@ export default withPageAuthRequired( function ClientDetails() {
                                 </Grid>
 
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent>
                                             <Typography>Hobbies/Activities</Typography>
                                         </CardContent>
@@ -131,7 +131,7 @@ export default withPageAuthRequired( function ClientDetails() {
                                 </Grid>
 
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent>
                                             <Typography>Diet</Typography>
                                         </CardContent>
@@ -139,7 +139,7 @@ export default withPageAuthRequired( function ClientDetails() {
                                 </Grid>
 
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent>
                                             <Typography>Calender</Typography>
                                         </CardContent>
@@ -147,7 +147,7 @@ export default withPageAuthRequired( function ClientDetails() {
                                 </Grid>
 
                                 <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ m: 2, width: 400 }}>
+                                    <Card sx={{ width: '100%' }}>
                                         <CardContent>
                                             <Typography>Medical Contacts</Typography>
                                         </CardContent>
