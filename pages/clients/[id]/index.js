@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, CardActions, CardContent, Typography } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router';
-import { useUserProfile } from '../../../components/UserProfileProvider';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
-import axios from 'axios';
 import ClientLayout, { useClient } from '../../../components/ClientLayout';
 
 // * Single Client Details View
@@ -17,8 +15,10 @@ const darkTheme = createTheme({
 
 const ClientDetails = withPageAuthRequired(function ClientDetails() {
     const router = useRouter()
+    const { id } = router.query
     // TODO use roles to guard the add/edit client button
     const clientProfile = useClient();
+
 
     return (
         <>
@@ -26,8 +26,6 @@ const ClientDetails = withPageAuthRequired(function ClientDetails() {
 
                 {clientProfile &&
                     <>
-                        {/* <Grid container spacing={2}>
-                                <Grid item xs={12} md={6} lg={4} > */}
                         <Card sx={{ width: { xs: "100%" } }}>
                             <CardContent align="left">
                                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -60,91 +58,6 @@ const ClientDetails = withPageAuthRequired(function ClientDetails() {
                                 <Button size="small">Delete</Button>
                             </CardActions>
                         </Card>
-                        {/* </Grid> */}
-
-                        {/* <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ width: { xs: "100%" } }}>
-                                        <CardContent>
-                                            <Typography>Important Details</Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-
-                                <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ width: { xs: "100%" } }}>
-                                        <CardContent>
-                                            <Typography>Guardian/Family</Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            //Todo: add family by id
-                                            <Button size="small"
-                                                onClick={() => {
-                                                    router.push(`/clients/${id}/edit`)
-                                                }}
-                                            >Add</Button>
-                                        </CardActions>
-                                    </Card>
-                                </Grid>
-
-                                <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ width: { xs: "100%" } }}>
-                                        <CardContent>
-                                            <Typography>Caregivers</Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            <form onSubmit={(e) => {
-                                                e.preventDefault()
-
-                                            }}>
-                                                <TextField name="caregiverID" size="small" label="Caregiver ID here"></TextField>
-                                                <Button size="small" type="submit"
-                                                >Add</Button>
-                                            </form>
-                                        </CardActions>
-                                    </Card>
-                                </Grid>
-
-                                <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ width: { xs: "100%" } }}>
-                                        <CardContent>
-                                            Daily Tasks
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-
-                                <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ width: { xs: "100%" } }}>
-                                        <CardContent>
-                                            <Typography>Hobbies/Activities</Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-
-                                <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ width: { xs: "100%" } }}>
-                                        <CardContent>
-                                            <Typography>Diet</Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-
-                                <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ width: { xs: "100%" } }}>
-                                        <CardContent>
-                                            <Typography>Calender</Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-
-                                <Grid item xs={12} md={6} lg={4}>
-                                    <Card sx={{ width: { xs: "100%" } }}>
-                                        <CardContent>
-                                            <Typography>Medical Contacts</Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid> */}
-
-                        {/* </Grid> */}
                     </>
                 }
             </ThemeProvider>

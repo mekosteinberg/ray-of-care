@@ -25,12 +25,14 @@ export default withApiAuthRequired(
                         select: {
                             userId: false,
                             firstName: true,
+                            lastName: true
                         }
                     },
                     caregiverProfile: {
                         select: {
                             userId: false,
                             firstName: true,
+                            lastName: true
                         }
                     },
                 }

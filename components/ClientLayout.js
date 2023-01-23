@@ -12,9 +12,14 @@ const clientNav = [
         href: (id) => `/clients/${id}`
     },
     {
+        text: 'Messages',
+        href: (id) => `/clients/${id}/messages`
+    },
+    {
         text: 'Caregivers',
         href: (id) => `/clients/${id}/caregivers`
     }
+
 ]
 //Make these later
 {/* <MenuItem onClick={handleClose}>Profile</MenuItem>

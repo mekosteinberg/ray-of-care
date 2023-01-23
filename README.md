@@ -49,8 +49,11 @@ postgres
 \q
 ```
 ### Unsolved Problems
-- when fetch gets a 404, the console always logs an error even though i have a catch handler for it
-
+- when fetch gets a 404, the console always logs an error even though I have a catch handler for it
+- pagination for messages, that will get really long and slow otherwise
+- update messages in realtime 
+- notifications of new messages
+- finish adding guardian list and other activites and information 
 
 ### Resource Links & Notes
 * https://nextjs.org/docs/getting-started

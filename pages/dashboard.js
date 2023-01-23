@@ -51,7 +51,9 @@ export default withPageAuthRequired(function Dashboard() {
                                     <Button onClick={() => {
                                         router.push('/clients/' + client.id)
                                     }}>Profile</Button>
-                                    <Button>Messages</Button>
+                                    <Button onClick={() => {
+                                        router.push(`/clients/${client.id}/messages`)
+                                    }}>Messages</Button>
                                 </CardActions>
                             </Card>
                         </Grid>
